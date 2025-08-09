@@ -104,6 +104,6 @@ This project is licensed under the MIT License. See `LICENSE` for details.
 Syncly is built with privacy in mind:
 
 - Literally no data collection  
-- No third-party tracking (unless user opts into sync)
+- No third-party tracking
 - All synced data is encrypted end-to-end before leaving the device
 - User data stays on-device unless the user enables sync
