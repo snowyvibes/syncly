@@ -1,16 +1,108 @@
-# syncly
+# Syncly
 
-A new Flutter project.
+Syncly is a free, open-source notes and reminders app built with **Flutter**. It works offline-first, syncs across devices, and emphasizes user privacy — no ads, no trackers.
+
+## Features
+
+- Rich notes — create and manage notes
+- Reminders — scheduled notifications
+- Cross-platform — Android, iOS, Desktop, Web
+- Offline-first — full functionality without network
+- Sync (planned) — secure cloud sync via a self-hosted backend
+- Custom themes — light/dark mode
+- Privacy-first — minimal data collection; users control sync
+
+## Tech Stack
+
+- **Frontend:** Flutter (Riverpod for state management)  
+- **Local storage:** Drift (SQLite ORM)  
+- **Sync backend:**  
+  - Development: Supabase  
+  - Production: self-hosted backend (Oracle VM)  
+- **Routing:** GoRouter  
+- **Architecture:** Clean Architecture (feature-based + core/shared modules)
+
+## Project Structure
+
+```
+lib/
+├── core/                # Shared utilities, theme, widgets
+│   ├── errors/
+│   ├── usecases/
+│   ├── utils/
+│   └── theme/
+├── features/
+│   └── notes/
+│       ├── data/
+│       │   ├── datasources/
+│       │   │   ├── local/   # Drift implementation
+│       │   │   └── remote/  # Supabase / VM implementation
+│       │   ├── models/      # DTOs, serializable models
+│       │   └── repositories_impl/
+│       ├── domain/
+│       │   ├── entities/    # Note, Reminder entities
+│       │   ├── repositories/# Abstract repository interfaces
+│       │   └── usecases/    # Business logic
+│       └── presentation/
+│           ├── providers/   # Riverpod providers
+│           ├── pages/       # Screens
+│           └── widgets/     # Feature-specific widgets
+├── app.dart              # App widget & router setup
+└── main.dart             # Entry point
+```
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+### Prerequisites
+- [Flutter SDK](https://flutter.dev/docs/get-started/install) (stable)  
+- IDE: VS Code or Android Studio
 
-A few resources to get you started if this is your first Flutter project:
+### Clone the Repository
+```bash
+git clone https://github.com/<your-username>/syncly.git
+cd syncly
+```
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### Install Dependencies
+```bash
+flutter pub get
+```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Run the App
+```bash
+flutter run
+```
+
+## Testing
+
+We follow a test-as-you-build approach:
+
+- Unit tests — functions and use cases  
+- Widget tests — UI components  
+- Integration tests — end-to-end flows
+
+Run tests:
+```bash
+flutter test
+```
+
+Integration tests:
+```bash
+flutter drive --driver=test_driver/integration_test.dart --target=integration_test/app_flow_test.dart
+```
+
+## Contributing
+
+Contributions are welcome. Please open an issue before submitting a PR so we can discuss changes and align on scope and design.
+
+## License
+
+This project is licensed under the MIT License. See `LICENSE` for details.
+
+## Privacy
+
+Syncly is built with privacy in mind:
+
+- No data collection by default  
+- No third-party tracking (unless user opts into sync)  
+- User data stays on-device unless the user enables sync
