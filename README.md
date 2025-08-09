@@ -6,11 +6,11 @@ Syncly is a free, open-source notes and reminders app built with **Flutter**. It
 
 - Rich notes — create and manage notes
 - Reminders — scheduled notifications
-- Cross-platform — Android, iOS, Desktop, Web
+- Cross-platform — Android, iOS, Web
 - Offline-first — full functionality without network
 - Sync (planned) — secure cloud sync via a self-hosted backend
 - Custom themes — light/dark mode
-- Privacy-first — minimal data collection; users control sync
+- Privacy-first — literally no data collection; all synced data is encrypted end-to-end
 
 ## Tech Stack
 
@@ -103,6 +103,7 @@ This project is licensed under the MIT License. See `LICENSE` for details.
 
 Syncly is built with privacy in mind:
 
-- No data collection by default  
-- No third-party tracking (unless user opts into sync)  
+- Literally no data collection  
+- No third-party tracking (unless user opts into sync)
+- All synced data is encrypted end-to-end before leaving the device
 - User data stays on-device unless the user enables sync
