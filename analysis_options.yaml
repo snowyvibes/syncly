@@ -1,0 +1,54 @@
+# Activate recommended lint rules for Flutter apps
+include: package:flutter_lints/flutter.yaml
+
+linter:
+  rules:
+    # Debug and output rules
+    avoid_print: false  # Allow print statements for debugging
+
+    # Constructor and immutability rules
+    prefer_const_constructors: true  # Use const constructors when possible
+    prefer_const_literals_to_create_immutables: true  # Use const for immutable collections
+    prefer_const_declarations: true  # Use const for immutable variables
+
+    # Field and variable rules
+    prefer_final_fields: true  # Use final for fields that aren't reassigned
+    prefer_typing_uninitialized_variables: true  # Explicitly type uninitialized variables
+
+
+
+    # Code style and formatting
+    avoid_redundant_argument_values: true  # Remove unnecessary argument values
+    prefer_single_quotes: true  # Use single quotes for strings
+    unnecessary_this: true  # Remove unnecessary 'this' references
+    prefer_expression_function_bodies: true  # Use => for single expression functions
+    require_trailing_commas: true  # Add trailing commas for better formatting
+
+    # Async and void rules
+    avoid_void_async: true  # Avoid void return type for async functions
+
+    # Widget and container rules
+    avoid_unnecessary_containers: true  # Remove unnecessary Container widgets
+    sort_child_properties_last: true  # Sort child properties last in widgets
+
+    # Class and method rules
+    avoid_setters_without_getters: true  # Avoid setters without corresponding getters
+
+    # Import rules
+    avoid_relative_lib_imports: true  # Use package imports instead of relative imports
+
+    # Constructor parameter rules
+    use_super_parameters: true  # Use super parameters in constructors
+
+    # Control flow rules
+    avoid_empty_else: true  # Avoid empty else clauses
+
+    # Resource management rules
+    cancel_subscriptions: true  # Cancel stream subscriptions
+    close_sinks: true  # Close StreamSink instances
+
+    # Exception handling rules
+    avoid_catches_without_on_clauses: true  # Use specific exception types in catch clauses
+
+    # Type safety rules
+    avoid_types_as_parameter_names: true  # Avoid using type names as parameter names
