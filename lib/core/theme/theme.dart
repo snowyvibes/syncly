@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
-const _seedColor = Color(0xFF4B5FFF);
+const _primaryColor = Color(0xFF0B4F6C);
+const _secondaryColor = Color(0xFF59A5D8);
+const _tertiaryColor = Color(0xFFFAF4D3);
+
 const _elevationOverlayColor = Colors.transparent;
 
 const _brandGradient = LinearGradient(
@@ -10,71 +13,102 @@ const _brandGradient = LinearGradient(
 );
 
 TextTheme _typography(ColorScheme scheme, bool dark) {
-  const display = 'SF Pro Display';
-  const text = 'SF Pro Text';
+  const display = 'Zain';
+  const text = 'Zain';
   return const TextTheme(
-    displayLarge: TextStyle(fontFamily: display, fontWeight: FontWeight.w600, letterSpacing: -1.2),
-    displayMedium: TextStyle(fontFamily: display, fontWeight: FontWeight.w600, letterSpacing: -0.8),
-    displaySmall: TextStyle(fontFamily: display, fontWeight: FontWeight.w600, letterSpacing: -0.6),
-    headlineLarge: TextStyle(fontFamily: display, fontWeight: FontWeight.w600, letterSpacing: -0.8),
+    displayLarge: TextStyle(
+      fontFamily: display,
+      fontWeight: FontWeight.w100,
+      letterSpacing: -1.5,
+      fontSize: 72,
+    ),
+    displayMedium: TextStyle(
+      fontFamily: display,
+      fontWeight: FontWeight.w100,
+      letterSpacing: -1.2,
+      fontSize: 60,
+    ),
+    displaySmall: TextStyle(
+      fontFamily: display,
+      fontWeight: FontWeight.w200,
+      letterSpacing: -1.0,
+      fontSize: 48,
+    ),
+    headlineLarge: TextStyle(
+      fontFamily: display,
+      fontWeight: FontWeight.w200,
+      letterSpacing: -1.0,
+      fontSize: 42,
+    ),
     headlineMedium: TextStyle(
       fontFamily: display,
-      fontWeight: FontWeight.w600,
-      letterSpacing: -0.4,
+      fontWeight: FontWeight.w200,
+      letterSpacing: -0.8,
+      fontSize: 36,
     ),
-    headlineSmall: TextStyle(fontFamily: display, fontWeight: FontWeight.w600, letterSpacing: -0.2),
-    titleLarge: TextStyle(fontFamily: text, fontWeight: FontWeight.w600, letterSpacing: -0.2),
+    headlineSmall: TextStyle(
+      fontFamily: display,
+      fontWeight: FontWeight.w300,
+      letterSpacing: -0.6,
+      fontSize: 32,
+    ),
+    titleLarge: TextStyle(
+      fontFamily: text,
+      fontWeight: FontWeight.w300,
+      letterSpacing: -0.4,
+      fontSize: 28,
+    ),
     titleMedium: TextStyle(
       fontFamily: text,
-      fontWeight: FontWeight.w500,
-      fontSize: 16,
+      fontWeight: FontWeight.w300,
+      fontSize: 24,
       letterSpacing: 0,
     ),
     titleSmall: TextStyle(
       fontFamily: text,
-      fontWeight: FontWeight.w500,
-      fontSize: 14,
+      fontWeight: FontWeight.w300,
+      fontSize: 22,
       letterSpacing: 0,
     ),
-    bodyLarge: TextStyle(fontFamily: text, fontWeight: FontWeight.w400, fontSize: 16, height: 1.4),
-    bodyMedium: TextStyle(fontFamily: text, fontWeight: FontWeight.w400, fontSize: 14, height: 1.4),
-    bodySmall: TextStyle(fontFamily: text, fontWeight: FontWeight.w400, fontSize: 12, height: 1.3),
+    bodyLarge: TextStyle(fontFamily: text, fontWeight: FontWeight.w200, fontSize: 24),
+    bodyMedium: TextStyle(fontFamily: text, fontWeight: FontWeight.w200, fontSize: 22),
+    bodySmall: TextStyle(fontFamily: text, fontWeight: FontWeight.w200, fontSize: 18),
     labelLarge: TextStyle(
       fontFamily: text,
-      fontWeight: FontWeight.w600,
-      fontSize: 14,
+      fontWeight: FontWeight.w300,
+      fontSize: 18,
       letterSpacing: 0.2,
     ),
     labelMedium: TextStyle(
       fontFamily: text,
-      fontWeight: FontWeight.w600,
-      fontSize: 12,
+      fontWeight: FontWeight.w300,
+      fontSize: 16,
       letterSpacing: 0.2,
     ),
     labelSmall: TextStyle(
       fontFamily: text,
-      fontWeight: FontWeight.w600,
-      fontSize: 11,
+      fontWeight: FontWeight.w300,
+      fontSize: 14,
       letterSpacing: 0.4,
     ),
   ).apply(bodyColor: scheme.onSurface, displayColor: scheme.onSurface);
 }
 
 final ColorScheme _lightScheme = ColorScheme.fromSeed(
-  seedColor: _seedColor,
+  seedColor: _primaryColor,
+  secondary: _secondaryColor,
+  tertiary: _tertiaryColor,
   surface: const Color(0xFFF8F9FC),
   surfaceContainerHighest: const Color(0xFFE5E7F2),
-  secondary: const Color(0xFF636CFF),
-  tertiary: const Color(0xFF7F53FF),
 );
 
 final ColorScheme _darkScheme = ColorScheme.fromSeed(
-  seedColor: _seedColor,
+  seedColor: _primaryColor,
+  secondary: _secondaryColor,
+  tertiary: _tertiaryColor,
   brightness: Brightness.dark,
   surface: const Color(0xFF11131A),
   surfaceContainerHighest: const Color(0xFF1E2330),
-  secondary: const Color(0xFF8189FF),
-  tertiary: const Color(0xFFB590FF),
 );
 
 ShapeBorder _cardShape = RoundedRectangleBorder(borderRadius: BorderRadius.circular(20));
@@ -88,6 +122,7 @@ final lightTheme = ThemeData(
   useMaterial3: true,
   colorScheme: _lightScheme,
   brightness: Brightness.light,
+  fontFamily: 'Zain',
   splashFactory: InkSparkle.splashFactory,
   scaffoldBackgroundColor: _lightScheme.surface,
   typography: Typography.material2021(),
@@ -214,6 +249,7 @@ final darkTheme = ThemeData(
   useMaterial3: true,
   colorScheme: _darkScheme,
   brightness: Brightness.dark,
+  fontFamily: 'Zain',
   splashFactory: InkSparkle.splashFactory,
   scaffoldBackgroundColor: _darkScheme.surface,
   typography: Typography.material2021(),
@@ -333,7 +369,7 @@ final darkTheme = ThemeData(
     color: _darkScheme.primary,
     linearTrackColor: _darkScheme.primary.withOpacity(.18),
   ),
-  extensions: <ThemeExtension<dynamic>>[const _BrandingExtension(gradient: _brandGradient)],
+  extensions: const <ThemeExtension<dynamic>>[_BrandingExtension(gradient: _brandGradient)],
 );
 
 // Custom ThemeExtension for brand extras (e.g., gradient usage)

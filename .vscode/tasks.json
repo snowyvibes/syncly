@@ -1,0 +1,34 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "shell",
+			"command": "flutter clean && clear && flutter pub get",
+			"group": "build",
+			"label": "flutter: clean and pub get",
+			"detail": "Clean project, clear terminal, and get dependencies"
+		},
+		{
+			"type": "flutter",
+			"command": "flutter",
+			"args": [
+				"pub",
+				"get"
+			],
+			"problemMatcher": [],
+			"label": "flutter: flutter pub get",
+			"detail": ""
+		},
+		{
+			"type": "flutter",
+			"command": "flutter",
+			"args": [
+				"pub",
+				"upgrade"
+			],
+			"problemMatcher": [],
+			"label": "flutter: flutter pub upgrade",
+			"detail": ""
+		}
+	]
+}

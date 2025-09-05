@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:syncly/core/utils/constants.dart';
 import 'package:syncly/core/utils/sizes.dart';
 import 'package:syncly/features/tasks/domain/entities/task.dart';
 import 'package:syncly/features/tasks/presentation/widgets/calendar.dart';
@@ -10,83 +9,130 @@ class TasksPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    backgroundColor: Theme.of(context).primaryColor,
+    body: Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [Theme.of(context).colorScheme.primary, Theme.of(context).colorScheme.secondary],
+        ),
+      ),
+      child: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            CustomCalendarWidget(events: tasks.map((task) => task.dueDate).toList()),
 
-    body: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const SizedBox(height: AppSizes.extraLarge),
-        const SizedBox(height: AppSizes.large),
-        const CustomCalendarWidget(),
-        kBigSizedBox,
-        Expanded(
-          child: Container(
-            width: double.infinity,
-            padding: const EdgeInsets.only(
-              top: AppSizes.large,
-              left: AppSizes.large,
-              right: AppSizes.large,
-            ),
-            decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.surface,
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(AppSizes.large),
-                topRight: Radius.circular(AppSizes.large),
-              ),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Active Tasks', style: Theme.of(context).textTheme.headlineMedium),
-                Expanded(
-                  child: ListView.builder(
-                    itemBuilder: (context, index) => TaskTile(task: tasks[index]),
-                    itemCount: tasks.length,
+            Expanded(
+              child: Material(
+                color: Theme.of(context).colorScheme.surface,
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(AppSizes.size24),
+                  topRight: Radius.circular(AppSizes.size24),
+                ),
+                clipBehavior: Clip.antiAlias,
+                child: Container(
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.surface,
+                  ),
+                  child: CustomScrollView(
+                    shrinkWrap: true,
+                    slivers: [
+                      SliverList(
+                        delegate: SliverChildListDelegate(
+                          [
+                            ExpansionTile(
+                              title: Text(
+                                'Today\'s Tasks',
+                                style: Theme.of(context).textTheme.headlineSmall,
+                              ),
+
+                              initiallyExpanded: true,
+                              maintainState: true,
+                              collapsedBackgroundColor: Theme.of(context).colorScheme.tertiary,
+
+                              children: List.generate(
+                                tasks.length,
+                                (index) => TaskTile(task: tasks[index]),
+                              ),
+                            ),
+                            ExpansionTile(
+                              title: Text(
+                                'Overdue Tasks',
+                                style: Theme.of(context).textTheme.headlineMedium,
+                              ),
+
+                              initiallyExpanded: true,
+                              maintainState: true,
+                              collapsedBackgroundColor: Theme.of(context).colorScheme.tertiary,
+
+                              children: List.generate(
+                                tasks.length,
+                                (index) => TaskTile(task: tasks[index]),
+                              ),
+                            ),
+                            ExpansionTile(
+                              title: Text(
+                                'Upcoming Tasks',
+                                style: Theme.of(context).textTheme.headlineMedium,
+                              ),
+
+                              initiallyExpanded: true,
+                              maintainState: true,
+                              collapsedBackgroundColor: Theme.of(context).colorScheme.tertiary,
+
+                              children: List.generate(
+                                tasks.length,
+                                (index) => TaskTile(task: tasks[index]),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ],
+              ),
             ),
-          ),
+          ],
         ),
-      ],
+      ),
     ),
   );
 }
 
 final List<Task> tasks = [
   Task(
-    title: 'Task 1',
-    description: 'Description for task 1',
+    title: 'Get groceries',
+    description: 'Buy milk, eggs, and bread',
     dueDate: DateTime.now(),
     createdAt: DateTime.now(),
   ),
   Task(
-    title: 'Task 2',
-    description: 'Description for task 2',
+    title: 'Do laundry',
+    description: 'Wash and fold clothes',
     dueDate: DateTime.now().add(const Duration(days: 1)),
     createdAt: DateTime.now(),
   ),
   Task(
-    title: 'Task 3',
-    description: 'Description for task 3',
-    dueDate: DateTime.now().add(const Duration(days: 2)),
+    title: 'Get a haircut',
+    dueDate: DateTime.now().add(const Duration(days: 1)),
     createdAt: DateTime.now(),
   ),
   Task(
-    title: 'Task 4',
-    description: 'Description for task 4',
+    title: 'Clean the house',
+    description: 'Tidy up the living room and bedrooms',
     dueDate: DateTime.now().add(const Duration(days: 3)),
     createdAt: DateTime.now(),
   ),
   Task(
-    title: 'Task 5',
-    description: 'Description for task 5',
+    title: 'Organize workspace',
+    description: 'Sort and organize the desk and files',
     dueDate: DateTime.now().add(const Duration(days: 4)),
     createdAt: DateTime.now(),
   ),
   Task(
-    title: 'Task 6',
-    description: 'Description for task 6',
+    title: 'Prepare presentation',
+    description: 'Create slides for the project presentation',
     dueDate: DateTime.now().add(const Duration(days: 5)),
     createdAt: DateTime.now(),
   ),

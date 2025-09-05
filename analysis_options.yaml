@@ -1,8 +1,15 @@
 # Activate recommended lint rules for Flutter apps
 include: package:flutter_lints/flutter.yaml
 
+formatter: 
+  trailing_commas: preserve
+
 linter:
+
+
   rules:
+
+    
     # Debug and output rules
     avoid_print: false  # Allow print statements for debugging
 

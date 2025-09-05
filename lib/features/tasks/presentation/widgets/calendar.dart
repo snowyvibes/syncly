@@ -1,50 +1,114 @@
 import 'package:flutter/material.dart';
-import 'package:syncly/core/utils/constants.dart';
-import 'package:syncly/features/tasks/presentation/widgets/calendar_day.dart';
+import 'package:table_calendar/table_calendar.dart';
 
-class CustomCalendarWidget extends StatelessWidget {
-  const CustomCalendarWidget({super.key});
+class CustomCalendarWidget extends StatefulWidget {
+  const CustomCalendarWidget({super.key, required this.events});
+
+  final List<DateTime?> events;
+
+  @override
+  State<CustomCalendarWidget> createState() => _CustomCalendarWidgetState();
+}
+
+class _CustomCalendarWidgetState extends State<CustomCalendarWidget> {
+  CalendarFormat _calendarFormat = CalendarFormat.week;
+  DateTime _selectedDay = DateTime.now();
+  DateTime _focusedDay = DateTime.now();
+
+  List<DateTime?> _getEventsForDay(DateTime day) {
+    if (widget.events.isNotEmpty) {
+      return widget.events.where((event) => isSameDay(event, day)).toList();
+    }
+    return [];
+  }
 
   @override
   Widget build(BuildContext context) => Container(
+    padding: const EdgeInsets.all(16.0),
     decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-          child: Text(
-            'August',
-            style: Theme.of(
-              context,
-            ).textTheme.headlineLarge!.copyWith(color: Theme.of(context).colorScheme.surface),
-          ),
+    child: TableCalendar(
+      eventLoader: (day) => _getEventsForDay(day),
+      selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
+      firstDay: DateTime.utc(2010, 10, 16),
+      lastDay: DateTime.utc(2030, 3, 14),
+      formatAnimationCurve: Curves.easeInOutCubic,
+      formatAnimationDuration: const Duration(milliseconds: 300),
+      calendarBuilders: CalendarBuilders(
+        markerBuilder: (context, date, events) {
+          if (events.isNotEmpty) {
+            final eventCount = events.length;
+
+            String eventCountInDots = '';
+
+            for (var i = 0; i < eventCount && i < 3; i++) {
+              eventCountInDots += '•';
+            }
+
+            return Positioned(
+              top: 23,
+              // right: 1,
+              child: Text(
+                eventCountInDots,
+                style: TextStyle(color: Theme.of(context).colorScheme.onTertiary, fontSize: 13),
+              ),
+            );
+          }
+          return const SizedBox.shrink();
+        },
+      ),
+      focusedDay: _focusedDay,
+      daysOfWeekHeight: 25,
+      daysOfWeekStyle: DaysOfWeekStyle(
+        weekdayStyle: TextStyle(color: Theme.of(context).colorScheme.onSurface),
+        weekendStyle: TextStyle(color: Theme.of(context).colorScheme.onSurface),
+      ),
+      rowHeight: 42,
+      currentDay: DateTime.now(),
+
+      headerStyle: HeaderStyle(
+        leftChevronVisible: false,
+        rightChevronVisible: false,
+        titleTextStyle: Theme.of(
+          context,
+        ).textTheme.displaySmall!.copyWith(color: Theme.of(context).colorScheme.surface),
+      ),
+
+      onDaySelected: (DateTime selectedDay, DateTime focusedDay) {
+        setState(() {
+          _selectedDay = selectedDay;
+          _focusedDay = focusedDay;
+        });
+      },
+      calendarFormat: _calendarFormat,
+      onFormatChanged: (CalendarFormat format) {
+        setState(() {
+          _calendarFormat = format;
+        });
+      },
+      availableCalendarFormats: const {CalendarFormat.month: 'Month', CalendarFormat.week: 'Week'},
+      calendarStyle: CalendarStyle(
+        todayDecoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.primary,
+          shape: BoxShape.circle,
         ),
-        kSizedBox,
-        kSizedBox,
-        SizedBox(
-          height: 90,
-          child: ListView(
-            scrollDirection: Axis.horizontal,
-            children: const [
-              CalendarDayWidget(day: 'Mon', date: '6', taskCount: 0),
-              CalendarDayWidget(day: 'Tue', date: '7', taskCount: 1),
-              CalendarDayWidget(day: 'Wed', date: '8', taskCount: 2, isSelected: true),
-              CalendarDayWidget(day: 'Thu', date: '9', taskCount: 3),
-              CalendarDayWidget(day: 'Fri', date: '10', taskCount: 4),
-              CalendarDayWidget(day: 'Sat', date: '11', taskCount: 5),
-              CalendarDayWidget(day: 'Sun', date: '12', taskCount: 0),
-              CalendarDayWidget(day: 'Mon', date: '13', taskCount: 0),
-              CalendarDayWidget(day: 'Tue', date: '14', taskCount: 0),
-              CalendarDayWidget(day: 'Wed', date: '15', taskCount: 0),
-              CalendarDayWidget(day: 'Thu', date: '16', taskCount: 0),
-              CalendarDayWidget(day: 'Fri', date: '17', taskCount: 0),
-              CalendarDayWidget(day: 'Sat', date: '18', taskCount: 0),
-              CalendarDayWidget(day: 'Sun', date: '19', taskCount: 0),
-            ],
-          ),
+        markersMaxCount: 3,
+        markerSize: 100,
+        markerDecoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.tertiary,
+          shape: BoxShape.circle,
         ),
-      ],
+        markerMargin: const EdgeInsets.symmetric(horizontal: 0.5),
+        selectedDecoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.secondary,
+          shape: BoxShape.circle,
+        ),
+        selectedTextStyle: TextStyle(
+          color: Theme.of(context).colorScheme.surface,
+          fontWeight: FontWeight.bold,
+        ),
+        weekNumberTextStyle: TextStyle(color: Theme.of(context).colorScheme.surface),
+        defaultTextStyle: TextStyle(color: Theme.of(context).colorScheme.surface),
+      ),
     ),
   );
 }

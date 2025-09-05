@@ -17,7 +17,6 @@ class CalendarDayWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-    height: 60,
     width: 60,
     padding: const EdgeInsets.all(8.0),
     margin: const EdgeInsets.symmetric(horizontal: 4.0),
