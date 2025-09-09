@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:syncly/core/utils/sizes.dart';
 
 class HashtagChip extends StatelessWidget {
   const HashtagChip({
@@ -13,15 +14,17 @@ class HashtagChip extends StatelessWidget {
   final Color? textColor;
 
   @override
-  Widget build(BuildContext context) => Chip(
-    labelPadding: EdgeInsets.zero,
+  Widget build(BuildContext context) => Container(
     padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-    label: Text(
-      '#$tag',
+    decoration: BoxDecoration(
+      color: chipColor?.withValues(alpha: 0.3),
+      borderRadius: BorderRadius.circular(AppSizes.borderRadius),
+    ),
+    child: Text(
+      tag,
       style: TextStyle(
         color: textColor ?? Colors.grey[600],
       ),
     ),
-    color: WidgetStateProperty.all(chipColor),
   );
 }

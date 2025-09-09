@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:syncly/core/utils/sizes.dart';
 
 const _primaryColor = Color(0xFF0B4F6C);
 const _secondaryColor = Color(0xFF59A5D8);
@@ -12,6 +13,8 @@ const _brandGradient = LinearGradient(
   end: Alignment.bottomRight,
 );
 
+const _fontStartSize = 14.0;
+
 TextTheme _typography(ColorScheme scheme, bool dark) {
   const display = 'Zain';
   const text = 'Zain';
@@ -20,75 +23,83 @@ TextTheme _typography(ColorScheme scheme, bool dark) {
       fontFamily: display,
       fontWeight: FontWeight.w100,
       letterSpacing: -1.5,
-      fontSize: 72,
+      fontSize: _fontStartSize + 24,
     ),
     displayMedium: TextStyle(
       fontFamily: display,
       fontWeight: FontWeight.w100,
       letterSpacing: -1.2,
-      fontSize: 60,
+      fontSize: _fontStartSize + 20,
     ),
     displaySmall: TextStyle(
       fontFamily: display,
       fontWeight: FontWeight.w200,
       letterSpacing: -1.0,
-      fontSize: 48,
+      fontSize: _fontStartSize + 18,
     ),
     headlineLarge: TextStyle(
       fontFamily: display,
       fontWeight: FontWeight.w200,
       letterSpacing: -1.0,
-      fontSize: 42,
+      fontSize: _fontStartSize + 16,
     ),
     headlineMedium: TextStyle(
       fontFamily: display,
       fontWeight: FontWeight.w200,
       letterSpacing: -0.8,
-      fontSize: 36,
+      fontSize: _fontStartSize + 14,
     ),
     headlineSmall: TextStyle(
       fontFamily: display,
       fontWeight: FontWeight.w300,
       letterSpacing: -0.6,
-      fontSize: 32,
+      fontSize: _fontStartSize + 12,
     ),
     titleLarge: TextStyle(
       fontFamily: text,
       fontWeight: FontWeight.w300,
       letterSpacing: -0.4,
-      fontSize: 28,
+      fontSize: _fontStartSize + 10,
     ),
     titleMedium: TextStyle(
       fontFamily: text,
       fontWeight: FontWeight.w300,
-      fontSize: 24,
+      fontSize: _fontStartSize + 8,
       letterSpacing: 0,
     ),
     titleSmall: TextStyle(
       fontFamily: text,
       fontWeight: FontWeight.w300,
-      fontSize: 22,
+      fontSize: _fontStartSize + 6,
       letterSpacing: 0,
     ),
-    bodyLarge: TextStyle(fontFamily: text, fontWeight: FontWeight.w200, fontSize: 24),
-    bodyMedium: TextStyle(fontFamily: text, fontWeight: FontWeight.w200, fontSize: 22),
-    bodySmall: TextStyle(fontFamily: text, fontWeight: FontWeight.w200, fontSize: 18),
+    bodyLarge: TextStyle(
+      fontFamily: text,
+      fontWeight: FontWeight.w200,
+      fontSize: _fontStartSize + 4,
+    ),
+    bodyMedium: TextStyle(
+      fontFamily: text,
+      fontWeight: FontWeight.w200,
+      fontSize: _fontStartSize + 2,
+    ),
+    bodySmall: TextStyle(fontFamily: text, fontWeight: FontWeight.w200, fontSize: _fontStartSize),
     labelLarge: TextStyle(
       fontFamily: text,
       fontWeight: FontWeight.w300,
-      fontSize: 18,
+      fontSize: _fontStartSize + 4,
       letterSpacing: 0.2,
     ),
     labelMedium: TextStyle(
       fontFamily: text,
       fontWeight: FontWeight.w300,
-      fontSize: 16,
+      fontSize: _fontStartSize + 2,
       letterSpacing: 0.2,
     ),
     labelSmall: TextStyle(
       fontFamily: text,
       fontWeight: FontWeight.w300,
-      fontSize: 14,
+      fontSize: _fontStartSize,
       letterSpacing: 0.4,
     ),
   ).apply(bodyColor: scheme.onSurface, displayColor: scheme.onSurface);
@@ -98,6 +109,7 @@ final ColorScheme _lightScheme = ColorScheme.fromSeed(
   seedColor: _primaryColor,
   secondary: _secondaryColor,
   tertiary: _tertiaryColor,
+
   surface: const Color(0xFFF8F9FC),
   surfaceContainerHighest: const Color(0xFFE5E7F2),
 );
@@ -111,10 +123,12 @@ final ColorScheme _darkScheme = ColorScheme.fromSeed(
   surfaceContainerHighest: const Color(0xFF1E2330),
 );
 
-ShapeBorder _cardShape = RoundedRectangleBorder(borderRadius: BorderRadius.circular(20));
+ShapeBorder _cardShape = RoundedRectangleBorder(
+  borderRadius: BorderRadius.circular(AppSizes.borderRadius),
+);
 
 InputBorder _inputBorder(Color color) => OutlineInputBorder(
-  borderRadius: BorderRadius.circular(14),
+  borderRadius: BorderRadius.circular(AppSizes.borderRadius),
   borderSide: BorderSide(color: color),
 );
 
@@ -123,6 +137,7 @@ final lightTheme = ThemeData(
   colorScheme: _lightScheme,
   brightness: Brightness.light,
   fontFamily: 'Zain',
+
   splashFactory: InkSparkle.splashFactory,
   scaffoldBackgroundColor: _lightScheme.surface,
   typography: Typography.material2021(),
@@ -154,22 +169,24 @@ final lightTheme = ThemeData(
     margin: const EdgeInsets.all(12),
   ),
   dialogTheme: DialogThemeData(
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppSizes.borderRadius)),
     backgroundColor: _lightScheme.surface,
   ),
   bottomSheetTheme: BottomSheetThemeData(
     backgroundColor: _lightScheme.surface,
     surfaceTintColor: Colors.transparent,
     shape: const RoundedRectangleBorder(
-      borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
+      borderRadius: BorderRadius.vertical(top: Radius.circular(AppSizes.borderRadius)),
     ),
   ),
   iconTheme: IconThemeData(color: _lightScheme.onSurfaceVariant),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ButtonStyle(
-      padding: WidgetStateProperty.all(const EdgeInsets.symmetric(horizontal: 28, vertical: 18)),
+      padding: WidgetStateProperty.all(
+        const EdgeInsets.symmetric(horizontal: AppSizes.padding * 2, vertical: AppSizes.padding),
+      ),
       shape: WidgetStateProperty.all(
-        RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+        RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppSizes.borderRadius)),
       ),
       elevation: WidgetStateProperty.all(0),
       backgroundColor: WidgetStateProperty.resolveWith(
@@ -184,17 +201,19 @@ final lightTheme = ThemeData(
   textButtonTheme: TextButtonThemeData(
     style: ButtonStyle(
       shape: WidgetStateProperty.all(
-        RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+        RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppSizes.borderRadius)),
       ),
       foregroundColor: WidgetStateProperty.all(_lightScheme.primary),
       overlayColor: WidgetStateProperty.all(_lightScheme.primary.withOpacity(.08)),
-      padding: WidgetStateProperty.all(const EdgeInsets.symmetric(horizontal: 20, vertical: 14)),
+      padding: WidgetStateProperty.all(
+        const EdgeInsets.symmetric(horizontal: AppSizes.padding * 2, vertical: AppSizes.padding),
+      ),
     ),
   ),
   outlinedButtonTheme: OutlinedButtonThemeData(
     style: ButtonStyle(
       shape: WidgetStateProperty.all(
-        RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppSizes.borderRadius)),
       ),
       side: WidgetStateProperty.resolveWith(
         (s) => BorderSide(
@@ -204,7 +223,9 @@ final lightTheme = ThemeData(
           width: 1.2,
         ),
       ),
-      padding: WidgetStateProperty.all(const EdgeInsets.symmetric(horizontal: 24, vertical: 16)),
+      padding: WidgetStateProperty.all(
+        const EdgeInsets.symmetric(horizontal: AppSizes.padding * 2, vertical: AppSizes.padding),
+      ),
       foregroundColor: WidgetStateProperty.all(_lightScheme.primary),
     ),
   ),
@@ -217,7 +238,10 @@ final lightTheme = ThemeData(
     filled: true,
     fillColor: _lightScheme.surfaceVariant.withOpacity(.35),
     hintStyle: TextStyle(color: _lightScheme.onSurfaceVariant.withOpacity(.6)),
-    contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
+    contentPadding: const EdgeInsets.symmetric(
+      horizontal: AppSizes.padding * 2,
+      vertical: AppSizes.padding,
+    ),
     enabledBorder: _inputBorder(Colors.transparent),
     focusedBorder: _inputBorder(_lightScheme.primary),
     errorBorder: _inputBorder(_lightScheme.error),
@@ -225,11 +249,14 @@ final lightTheme = ThemeData(
     border: _inputBorder(Colors.transparent),
   ),
   chipTheme: ChipThemeData(
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppSizes.borderRadius)),
     backgroundColor: _lightScheme.surfaceVariant.withOpacity(.5),
     selectedColor: _lightScheme.primary.withOpacity(.18),
     labelStyle: TextStyle(color: _lightScheme.onSurface),
-    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+    padding: const EdgeInsets.symmetric(
+      horizontal: AppSizes.padding,
+      vertical: AppSizes.padding / 2,
+    ),
   ),
   sliderTheme: SliderThemeData(
     trackHeight: 4,
@@ -281,22 +308,24 @@ final darkTheme = ThemeData(
     margin: const EdgeInsets.all(12),
   ),
   dialogTheme: DialogThemeData(
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppSizes.borderRadius)),
     backgroundColor: _darkScheme.surface,
   ),
   bottomSheetTheme: BottomSheetThemeData(
     backgroundColor: _darkScheme.surface,
     surfaceTintColor: Colors.transparent,
     shape: const RoundedRectangleBorder(
-      borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
+      borderRadius: BorderRadius.vertical(top: Radius.circular(AppSizes.borderRadius)),
     ),
   ),
   iconTheme: IconThemeData(color: _darkScheme.onSurfaceVariant),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ButtonStyle(
-      padding: WidgetStateProperty.all(const EdgeInsets.symmetric(horizontal: 28, vertical: 18)),
+      padding: WidgetStateProperty.all(
+        const EdgeInsets.symmetric(horizontal: AppSizes.padding * 2, vertical: AppSizes.padding),
+      ),
       shape: WidgetStateProperty.all(
-        RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+        RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppSizes.borderRadius)),
       ),
       elevation: WidgetStateProperty.all(0),
       backgroundColor: WidgetStateProperty.resolveWith(
@@ -311,17 +340,19 @@ final darkTheme = ThemeData(
   textButtonTheme: TextButtonThemeData(
     style: ButtonStyle(
       shape: WidgetStateProperty.all(
-        RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+        RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppSizes.borderRadius)),
       ),
       foregroundColor: WidgetStateProperty.all(_darkScheme.primary),
       overlayColor: WidgetStateProperty.all(_darkScheme.primary.withOpacity(.16)),
-      padding: WidgetStateProperty.all(const EdgeInsets.symmetric(horizontal: 20, vertical: 14)),
+      padding: WidgetStateProperty.all(
+        const EdgeInsets.symmetric(horizontal: AppSizes.padding * 2, vertical: AppSizes.padding),
+      ),
     ),
   ),
   outlinedButtonTheme: OutlinedButtonThemeData(
     style: ButtonStyle(
       shape: WidgetStateProperty.all(
-        RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppSizes.borderRadius)),
       ),
       side: WidgetStateProperty.resolveWith(
         (s) => BorderSide(
@@ -331,7 +362,9 @@ final darkTheme = ThemeData(
           width: 1.2,
         ),
       ),
-      padding: WidgetStateProperty.all(const EdgeInsets.symmetric(horizontal: 24, vertical: 16)),
+      padding: WidgetStateProperty.all(
+        const EdgeInsets.symmetric(horizontal: AppSizes.padding * 2, vertical: AppSizes.padding),
+      ),
       foregroundColor: WidgetStateProperty.all(_darkScheme.primary),
     ),
   ),
@@ -352,11 +385,14 @@ final darkTheme = ThemeData(
     border: _inputBorder(Colors.transparent),
   ),
   chipTheme: ChipThemeData(
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppSizes.borderRadius)),
     backgroundColor: _darkScheme.surfaceVariant.withOpacity(.4),
     selectedColor: _darkScheme.primary.withOpacity(.28),
     labelStyle: TextStyle(color: _darkScheme.onSurface),
-    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+    padding: const EdgeInsets.symmetric(
+      horizontal: AppSizes.padding,
+      vertical: AppSizes.padding / 2,
+    ),
   ),
   sliderTheme: SliderThemeData(
     trackHeight: 4,

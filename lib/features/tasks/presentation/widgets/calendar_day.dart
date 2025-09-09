@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:syncly/core/utils/constants.dart';
+import 'package:syncly/core/utils/sizes.dart';
 
 class CalendarDayWidget extends StatelessWidget {
   const CalendarDayWidget({
@@ -18,11 +19,11 @@ class CalendarDayWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Container(
     width: 60,
-    padding: const EdgeInsets.all(8.0),
-    margin: const EdgeInsets.symmetric(horizontal: 4.0),
+    padding: const EdgeInsets.all(AppSizes.padding),
+    margin: const EdgeInsets.symmetric(horizontal: AppSizes.padding / 2),
     decoration: BoxDecoration(
       // color: Theme.of(context).colorScheme.primaryContainer,
-      borderRadius: BorderRadius.circular(8),
+      borderRadius: BorderRadius.circular(AppSizes.borderRadius),
     ),
     child: Column(
       children: [
@@ -34,11 +35,11 @@ class CalendarDayWidget extends StatelessWidget {
         ),
         kSizedBox,
         Container(
-          padding: const EdgeInsets.all(5.0),
+          padding: const EdgeInsets.all(AppSizes.padding),
           decoration: BoxDecoration(
             color: isSelected ? Theme.of(context).colorScheme.primaryContainer : null,
             // color: Theme.of(context).colorScheme.primaryContainer,
-            borderRadius: BorderRadius.circular(30),
+            borderRadius: BorderRadius.circular(AppSizes.borderRadius),
           ),
           child: Column(
             children: [

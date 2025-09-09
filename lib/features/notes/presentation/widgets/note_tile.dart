@@ -9,7 +9,10 @@ class NoteTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+    padding: const EdgeInsets.symmetric(
+      horizontal: AppSizes.padding,
+      vertical: AppSizes.padding / 1.3,
+    ),
     decoration: BoxDecoration(
       color: Theme.of(
         context,

@@ -8,9 +8,9 @@ class AppSizes {
   static const double size32 = 32.0;
   static const double size40 = 40.0;
 
-  static const double padding = size8;
+  static const double padding = size12;
 
-  static const double borderRadius = size12;
+  static const double borderRadius = size16;
 
   static const double rowSpacing = size8;
   static const double columnSpacing = size8;

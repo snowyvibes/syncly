@@ -7,48 +7,39 @@ class NotesPage extends StatelessWidget {
   const NotesPage({super.key});
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-    body: Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [Theme.of(context).colorScheme.primary, Theme.of(context).colorScheme.secondary],
+  Widget build(BuildContext context) => SafeArea(
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(AppSizes.padding),
+          child: Text(
+            'Notes',
+            style: Theme.of(
+              context,
+            ).textTheme.displaySmall!.copyWith(color: Theme.of(context).colorScheme.surface),
+          ),
         ),
-      ),
-      child: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Text(
-                'Notes',
-                style: Theme.of(
-                  context,
-                ).textTheme.displaySmall!.copyWith(color: Theme.of(context).colorScheme.surface),
-              ),
+        Expanded(
+          child: Material(
+            color: Theme.of(context).colorScheme.surface,
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(AppSizes.borderRadius),
+              topRight: Radius.circular(AppSizes.borderRadius),
             ),
-            Expanded(
-              child: Material(
+            clipBehavior: Clip.antiAlias,
+            child: Container(
+              width: double.infinity,
+              decoration: BoxDecoration(
                 color: Theme.of(context).colorScheme.surface,
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(AppSizes.size24),
-                  topRight: Radius.circular(AppSizes.size24),
-                ),
-                clipBehavior: Clip.antiAlias,
-                child: Container(
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.surface,
-                  ),
-                  child: SingleChildScrollView(
-                    child: Column(children: folders),
-                  ),
-                ),
+              ),
+              child: SingleChildScrollView(
+                child: Column(children: folders),
               ),
             ),
-          ],
+          ),
         ),
-      ),
+      ],
     ),
   );
 }

@@ -1,5 +1,4 @@
 import 'package:intl/intl.dart';
-import 'package:timeago/timeago.dart' as timeago;
 
 class DateTimeHandler {
   static String formatDate(DateTime dateTime) => DateFormat('EEE, MMM dd').format(dateTime);
@@ -11,14 +10,18 @@ class DateTimeHandler {
 
   static String formatDateInWord(DateTime dateTime) {
     final now = DateTime.now();
-    final difference = dateTime.difference(now);
+    final today = DateTime(now.year, now.month, now.day);
+    final dateOnly = DateTime(dateTime.year, dateTime.month, dateTime.day);
+    final difference = dateOnly.difference(today).inDays;
 
-    if (difference.isNegative) {
-      // Past dates
-      return timeago.format(dateTime);
+    if (difference == 0) {
+      return 'Today';
+    } else if (difference == 1) {
+      return 'Tomorrow';
+    } else if (difference == -1) {
+      return 'Yesterday';
     } else {
-      // Future dates
-      return timeago.format(dateTime, allowFromNow: true);
+      return DateFormat('EEE, dd MMM').format(dateTime);
     }
   }
 

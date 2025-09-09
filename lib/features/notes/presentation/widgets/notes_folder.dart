@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:syncly/core/utils/constants.dart';
+import 'package:syncly/core/utils/sizes.dart';
 import 'package:syncly/features/notes/domain/entities/note.dart';
 import 'package:syncly/features/notes/presentation/widgets/note_tile.dart';
 
@@ -23,8 +25,8 @@ class NotesFolder extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.surface,
-        borderRadius: BorderRadius.circular(20),
-        boxShadow: [ 
+        borderRadius: BorderRadius.circular(AppSizes.borderRadius),
+        boxShadow: [
           // Inner shadow (light)
           BoxShadow(
             color: isDark ? Colors.white.withOpacity(0.1) : Colors.white.withOpacity(0.7),
@@ -42,19 +44,22 @@ class NotesFolder extends StatelessWidget {
         ],
       ),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(AppSizes.borderRadius),
         child: Expansible(
           controller: controller,
           headerBuilder: (context, animation) => Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+            padding: const EdgeInsets.symmetric(
+              horizontal: AppSizes.padding * 1.5,
+              vertical: AppSizes.padding,
+            ),
             child: Row(
               children: [
                 if (folderIcon != null) ...[
                   Container(
-                    padding: const EdgeInsets.all(8),
+                    padding: const EdgeInsets.all(AppSizes.padding),
                     decoration: BoxDecoration(
                       color: Theme.of(context).colorScheme.primaryContainer.withOpacity(0.3),
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(AppSizes.borderRadius),
                     ),
                     child: Icon(
                       folderIcon,
@@ -73,10 +78,13 @@ class NotesFolder extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: AppSizes.padding,
+                    vertical: AppSizes.padding / 2,
+                  ),
                   decoration: BoxDecoration(
                     color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(AppSizes.borderRadius),
                   ),
                   child: Text(
                     '${notes.length}',
@@ -88,7 +96,9 @@ class NotesFolder extends StatelessWidget {
                 ),
                 const SizedBox(width: 8),
                 Container(
-                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(30)),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(AppSizes.borderRadius),
+                  ),
                   child: AnimatedRotation(
                     turns: animation.value * 0.5,
                     duration: const Duration(milliseconds: 300),
@@ -115,12 +125,16 @@ class NotesFolder extends StatelessWidget {
             child: SizeTransition(
               sizeFactor: animation,
               child: Container(
-                padding: const EdgeInsets.only(left: 20, right: 20, bottom: 16),
+                padding: const EdgeInsets.only(
+                  left: AppSizes.padding,
+                  right: AppSizes.padding,
+                  bottom: AppSizes.padding / 2,
+                ),
                 child: Column(
                   children: [
                     Container(
                       height: 1,
-                      margin: const EdgeInsets.only(bottom: 12),
+                      margin: const EdgeInsets.only(bottom: AppSizes.padding),
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
                           colors: [
@@ -133,7 +147,7 @@ class NotesFolder extends StatelessWidget {
                     ),
                     if (notes.isEmpty)
                       Container(
-                        padding: const EdgeInsets.symmetric(vertical: 24),
+                        padding: const EdgeInsets.symmetric(vertical: AppSizes.padding * 2),
                         child: Column(
                           children: [
                             Icon(
@@ -160,7 +174,7 @@ class NotesFolder extends StatelessWidget {
                         padding: EdgeInsets.zero,
                         physics: const NeverScrollableScrollPhysics(),
                         itemCount: notes.length,
-                        separatorBuilder: (context, index) => const SizedBox(height: 8),
+                        separatorBuilder: (context, index) => kSizedBox,
                         itemBuilder: (context, index) => NoteTile(note: notes[index]),
                       ),
                   ],
@@ -173,109 +187,3 @@ class NotesFolder extends StatelessWidget {
     );
   }
 }
-
-// import 'package:flutter/material.dart';
-// import 'package:syncly/core/utils/constants.dart';
-// import 'package:syncly/features/notes/domain/entities/note.dart';
-// import 'package:syncly/features/notes/presentation/widgets/note_tile.dart';
-
-// class NotesFolder extends StatelessWidget {
-//   const NotesFolder({
-//     super.key,
-//     required this.folderName,
-//     required this.notes,
-//     this.folderIcon = Icons.folder,
-//   });
-
-//   final String folderName;
-//   final List<Note> notes; // or whatever type your items are
-//   final IconData? folderIcon;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     final controller = ExpansibleController();
-
-//     return Card(
-//       elevation: 5,
-//       child: Expansible(
-//         controller: controller,
-//         headerBuilder: (context, animation) => Container(
-//           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-
-//           child: Row(
-//             children: [
-//               if (folderIcon != null) ...[
-//                 Icon(
-//                   folderIcon,
-//                   color: Theme.of(context).colorScheme.onSurfaceVariant,
-//                 ),
-//                 const SizedBox(width: 12),
-//               ],
-//               Expanded(
-//                 child: Text(
-//                   folderName,
-//                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
-//                     fontWeight: FontWeight.w600,
-//                   ),
-//                 ),
-//               ),
-//               Badge(
-//                 label: Text('${notes.length}'),
-//                 child: AnimatedRotation(
-//                   turns: animation.value * 0.5,
-//                   duration: const Duration(milliseconds: 200),
-//                   child: IconButton(
-//                     padding: EdgeInsets.zero,
-//                     onPressed: () {
-//                       print('Folder tapped: $folderName');
-//                       print('Expanded: ${controller.isExpanded}');
-//                       controller.isExpanded ? controller.collapse() : controller.expand();
-//                     },
-//                     icon: const Icon(Icons.keyboard_arrow_down),
-//                     color: Theme.of(context).colorScheme.onSurfaceVariant,
-//                   ),
-//                 ),
-//               ),
-//             ],
-//           ),
-//         ),
-
-//         bodyBuilder: (context, animation) => FadeTransition(
-//           opacity: animation,
-//           child: SizeTransition(
-//             sizeFactor: animation,
-//             child: Container(
-//               padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
-//               child: Column(
-//                 children: [
-//                   const Divider(height: 1),
-//                   kSizedBox,
-//                   if (notes.isEmpty)
-//                     Container(
-//                       padding: const EdgeInsets.symmetric(vertical: 20),
-//                       child: Text(
-//                         'No items in this folder',
-//                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-//                           color: Theme.of(context).colorScheme.onSurfaceVariant,
-//                           fontStyle: FontStyle.italic,
-//                         ),
-//                       ),
-//                     )
-//                   else
-//                     ListView.separated(
-//                       shrinkWrap: true,
-//                       padding: EdgeInsets.zero,
-//                       physics: const NeverScrollableScrollPhysics(),
-//                       itemCount: notes.length,
-//                       separatorBuilder: (context, index) => kSizedBox,
-//                       itemBuilder: (context, index) => NoteTile(note: notes[index]),
-//                     ),
-//                 ],
-//               ),
-//             ),
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }

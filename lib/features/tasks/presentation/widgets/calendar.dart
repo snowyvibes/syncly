@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:syncly/core/utils/sizes.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class CustomCalendarWidget extends StatefulWidget {
@@ -24,8 +25,8 @@ class _CustomCalendarWidgetState extends State<CustomCalendarWidget> {
 
   @override
   Widget build(BuildContext context) => Container(
-    padding: const EdgeInsets.all(16.0),
-    decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
+    padding: const EdgeInsets.all(AppSizes.padding),
+    decoration: BoxDecoration(borderRadius: BorderRadius.circular(AppSizes.borderRadius)),
     child: TableCalendar(
       eventLoader: (day) => _getEventsForDay(day),
       selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
@@ -49,7 +50,9 @@ class _CustomCalendarWidgetState extends State<CustomCalendarWidget> {
               // right: 1,
               child: Text(
                 eventCountInDots,
-                style: TextStyle(color: Theme.of(context).colorScheme.onTertiary, fontSize: 13),
+                style: Theme.of(
+                  context,
+                ).textTheme.bodySmall?.copyWith(color: Theme.of(context).colorScheme.onTertiary),
               ),
             );
           }
@@ -70,7 +73,7 @@ class _CustomCalendarWidgetState extends State<CustomCalendarWidget> {
         rightChevronVisible: false,
         titleTextStyle: Theme.of(
           context,
-        ).textTheme.displaySmall!.copyWith(color: Theme.of(context).colorScheme.surface),
+        ).textTheme.displayLarge!.copyWith(color: Theme.of(context).colorScheme.surface),
       ),
 
       onDaySelected: (DateTime selectedDay, DateTime focusedDay) {

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:stylish_bottom_bar/stylish_bottom_bar.dart';
+import 'package:syncly/core/utils/sizes.dart';
+import 'package:syncly/features/notes/presentation/pages/add_note_page.dart';
 import 'package:syncly/features/notes/presentation/pages/notes_page.dart';
 import 'package:syncly/features/settings/presentation/pages/settings_page.dart';
+import 'package:syncly/features/tasks/presentation/pages/add_task_page.dart';
 import 'package:syncly/features/tasks/presentation/pages/tasks_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -17,7 +20,14 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    body: IndexedStack(index: _currentIndex, children: pages),
+    body: Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [Theme.of(context).colorScheme.primary, Theme.of(context).colorScheme.secondary],
+        ),
+      ),
+      child: IndexedStack(index: _currentIndex, children: pages),
+    ),
     floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
     floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
     floatingActionButton: FloatingActionButton(
@@ -25,24 +35,41 @@ class _HomePageState extends State<HomePage> {
       foregroundColor: Theme.of(context).colorScheme.primary,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
       onPressed: () {
-        // Handle floating action button press
+        if (_currentIndex == 0) {
+          // Navigate to add task page
+          showModalBottomSheet(
+            context: context,
+            builder: (context) => const SizedBox(height: 700, child: AddTaskPage()),
+          );
+        } else if (_currentIndex == 1) {
+          // Navigate to add note page
+          showModalBottomSheet(
+            context: context,
+            builder: (context) => const SizedBox(height: 700, child: AddNotePage()),
+          );
+        }
       },
       child: const Icon(Icons.add),
     ),
-    bottomNavigationBar: SafeArea(
+    bottomNavigationBar: SizedBox(
+      height: 90,
       child: StylishBottomBar(
         currentIndex: _currentIndex,
+        gradient: LinearGradient(
+          colors: [
+            Theme.of(context).colorScheme.primary,
+            Theme.of(context).colorScheme.secondary,
+          ],
+        ),
         onTap: (int index) => setState(() => _currentIndex = index),
         option: AnimatedBarOptions(),
         fabLocation: StylishBarFabLocation.end,
         borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(30),
-          topRight: Radius.circular(30),
+          topLeft: Radius.circular(AppSizes.borderRadius),
+          topRight: Radius.circular(AppSizes.borderRadius),
         ),
         elevation: 10,
-        gradient: LinearGradient(
-          colors: [Theme.of(context).colorScheme.primary, Theme.of(context).colorScheme.secondary],
-        ),
+
         backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
         hasNotch: true,
         notchStyle: NotchStyle.circle,
@@ -64,7 +91,7 @@ class _HomePageState extends State<HomePage> {
             unSelectedColor: Colors.grey[300]!,
           ),
           BottomBarItem(
-            icon: const Icon(FontAwesomeIcons.gear),
+            icon: const Icon(FontAwesomeIcons.gears),
             title: const SizedBox.shrink(),
             selectedColor: Colors.white,
             unSelectedColor: Colors.grey[300]!,
