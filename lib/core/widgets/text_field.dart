@@ -4,6 +4,7 @@ import 'package:syncly/core/utils/sizes.dart';
 class CustomTextField extends StatelessWidget {
   final String? labelText;
   final String? hintText;
+  final TextStyle? hintStyle;
   final IconData? prefixIcon;
   final IconData? suffixIcon;
   final VoidCallback? onSuffixIconPressed;
@@ -32,6 +33,7 @@ class CustomTextField extends StatelessWidget {
     this.maxLines = 1,
     this.fillColor,
     this.borderColor,
+    this.hintStyle,
     this.borderRadius = AppSizes.borderRadius,
   });
 
@@ -46,14 +48,53 @@ class CustomTextField extends StatelessWidget {
       keyboardType: keyboardType,
       enabled: enabled,
       maxLines: maxLines,
+      onEditingComplete: () => FocusScope.of(context).unfocus(),
+      contextMenuBuilder: (context, editableTextState) {
+        final TextEditingValue value = editableTextState.textEditingValue;
+        final List<ContextMenuButtonItem> buttonItems = [
+          if (editableTextState.widget.selectionEnabled && !value.selection.isCollapsed)
+            ContextMenuButtonItem(
+              label: 'Cut',
+              onPressed: () {
+                editableTextState.cutSelection(SelectionChangedCause.toolbar);
+              },
+            ),
+          if (editableTextState.widget.selectionEnabled && !value.selection.isCollapsed)
+            ContextMenuButtonItem(
+              label: 'Copy',
+              onPressed: () {
+                editableTextState.copySelection(SelectionChangedCause.toolbar);
+              },
+            ),
+          if (editableTextState.widget.selectionEnabled && !value.selection.isCollapsed)
+            ContextMenuButtonItem(
+              label: 'Paste',
+              onPressed: () {
+                editableTextState.pasteText(SelectionChangedCause.toolbar);
+              },
+            ),
+          if (!enabled && value.text.isNotEmpty)
+            ContextMenuButtonItem(
+              label: 'Select All',
+              onPressed: () {
+                editableTextState.selectAll(SelectionChangedCause.toolbar);
+              },
+            ),
+        ];
+        return AdaptiveTextSelectionToolbar.buttonItems(
+          anchors: editableTextState.contextMenuAnchors,
+          buttonItems: buttonItems,
+        );
+      },
       style: theme.textTheme.bodyMedium?.copyWith(
         fontWeight: FontWeight.w400,
       ),
       decoration: InputDecoration(
         labelText: labelText,
         hintText: hintText,
-        filled: true,
-        fillColor: fillColor ?? theme.colorScheme.surface,
+        hintStyle: hintStyle,
+        // filled: true,
+        // fillColor: fillColor ?? theme.colorScheme.surface,
         prefixIcon: prefixIcon != null
             ? Icon(prefixIcon, color: theme.colorScheme.onSurfaceVariant)
             : null,
@@ -67,14 +108,12 @@ class CustomTextField extends StatelessWidget {
           borderRadius: BorderRadius.circular(borderRadius),
           borderSide: BorderSide(
             color: borderColor ?? theme.colorScheme.outline,
-            width: 1.0,
           ),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(borderRadius),
           borderSide: BorderSide(
             color: borderColor ?? theme.colorScheme.outline.withOpacity(0.5),
-            width: 1.0,
           ),
         ),
         focusedBorder: OutlineInputBorder(
@@ -88,7 +127,6 @@ class CustomTextField extends StatelessWidget {
           borderRadius: BorderRadius.circular(borderRadius),
           borderSide: BorderSide(
             color: theme.colorScheme.error,
-            width: 1.0,
           ),
         ),
         focusedErrorBorder: OutlineInputBorder(

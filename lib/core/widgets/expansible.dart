@@ -38,30 +38,27 @@ class _CustomExpansibleWidgetState extends State<CustomExpansibleWidget> {
   @override
   Widget build(BuildContext context) => Expansible(
     controller: controller,
-
-    headerBuilder: (context, animation) => Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: AppSizes.padding * 1.5,
-        vertical: AppSizes.padding,
-      ),
-      child: Row(
-        spacing: AppSizes.rowSpacing,
-        children: [
-          Expanded(child: widget.header),
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(AppSizes.borderRadius),
-            ),
-            child: AnimatedRotation(
-              turns: animation.value * 0.5,
-              duration: const Duration(milliseconds: 300),
-              child: IconButton(
-                padding: EdgeInsets.zero,
-                visualDensity: VisualDensity.compact,
-                onPressed: () {
-                  controller.isExpanded ? controller.collapse() : controller.expand();
-                },
-                icon: Icon(
+    headerBuilder: (context, animation) => GestureDetector(
+      onTap: () {
+        controller.isExpanded ? controller.collapse() : controller.expand();
+      },
+      child: Container(
+        padding: const EdgeInsets.symmetric(
+          horizontal: AppSizes.padding * 1.5,
+          vertical: AppSizes.padding,
+        ),
+        child: Row(
+          spacing: AppSizes.rowSpacing,
+          children: [
+            Expanded(child: widget.header),
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(AppSizes.borderRadius),
+              ),
+              child: AnimatedRotation(
+                turns: animation.value * 0.5,
+                duration: const Duration(milliseconds: 300),
+                child: Icon(
                   Icons.keyboard_arrow_down_rounded,
                   size: 20,
                   weight: 30,
@@ -69,8 +66,8 @@ class _CustomExpansibleWidgetState extends State<CustomExpansibleWidget> {
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     ),
     bodyBuilder: (context, animation) => FadeTransition(

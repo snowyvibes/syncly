@@ -43,13 +43,19 @@ class _HomePageState extends State<HomePage> {
           // Navigate to add task page
           showModalBottomSheet(
             context: context,
-            builder: (context) => const SizedBox(height: 700, child: AddTaskPage()),
+            isScrollControlled: true,
+            showDragHandle: true,
+            useSafeArea: true,
+            builder: (context) => const AddTaskPage(),
           );
         } else if (_currentIndex == 1) {
           // Navigate to add note page
           showModalBottomSheet(
             context: context,
-            builder: (context) => const SizedBox(height: 700, child: AddNotePage()),
+            isScrollControlled: true,
+            showDragHandle: true,
+            useSafeArea: true,
+            builder: (context) => const AddNotePage(),
           );
         }
       },

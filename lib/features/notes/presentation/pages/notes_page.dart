@@ -9,6 +9,7 @@ class NotesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => SafeArea(
     child: Column(
+      spacing: AppSizes.columnSpacing,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
@@ -30,6 +31,7 @@ class NotesPage extends StatelessWidget {
             clipBehavior: Clip.antiAlias,
             child: Container(
               width: double.infinity,
+              margin: const EdgeInsets.only(top: AppSizes.padding),
               decoration: BoxDecoration(
                 color: Theme.of(context).colorScheme.surface,
               ),
@@ -64,36 +66,42 @@ final List<NotesFolder> folders = [
 
 final List<Note> notes = [
   Note(
+    id: '1',
     title: 'Meeting Notes - Q4 Planning',
     description: 'Discussed budget allocation and team goals for next quarter',
     lastUpdated: DateTime.now(),
     createdAt: DateTime.now(),
   ),
   Note(
+    id: '2',
     title: 'Flutter Development Tips',
     description: 'State management patterns and widget optimization techniques',
     lastUpdated: DateTime.now().add(const Duration(days: 1)),
     createdAt: DateTime.now(),
   ),
   Note(
+    id: '3',
     title: 'Book Ideas',
     description: 'Concepts for science fiction novel about AI consciousness',
     lastUpdated: DateTime.now().add(const Duration(days: 1)),
     createdAt: DateTime.now(),
   ),
   Note(
+    id: '4',
     title: 'Travel Plans',
     description: 'Research destinations and accommodations for summer vacation',
     lastUpdated: DateTime.now().add(const Duration(days: 3)),
     createdAt: DateTime.now(),
   ),
   Note(
+    id: '5',
     title: 'Recipe Collection',
     description: 'Favorite pasta dishes and cooking techniques to remember',
     lastUpdated: DateTime.now().add(const Duration(days: 4)),
     createdAt: DateTime.now(),
   ),
   Note(
+    id: '6',
     title: 'Learning Goals',
     description: 'Skills to develop: machine learning, design patterns, leadership',
     lastUpdated: DateTime.now().add(const Duration(days: 5)),

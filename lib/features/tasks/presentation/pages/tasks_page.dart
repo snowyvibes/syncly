@@ -6,12 +6,33 @@ import 'package:syncly/features/tasks/domain/entities/task.dart';
 import 'package:syncly/features/tasks/presentation/widgets/calendar.dart';
 import 'package:syncly/features/tasks/presentation/widgets/task_tile.dart';
 
-final List<Task> tasks = [
+final List<Task> _tasks = [
+  Task(
+    id: '0',
+    title: 'Push code to GitHub',
+    description: 'Push the recent changes to the remote repository',
+    dueDate: DateTime.now().subtract(const Duration(days: 1)),
+    createdAt: DateTime.now(),
+  ),
   Task(
     id: '1',
     title: 'Get groceries',
     description: 'Buy milk, eggs, and bread',
-    dueDate: DateTime.now().subtract(const Duration(days: 1)),
+    dueDate: DateTime.now(),
+    createdAt: DateTime.now(),
+  ),
+  Task(
+    id: '11',
+    title: 'Sell old laptop',
+    description: 'Put ad on eBay',
+    dueDate: DateTime.now(),
+    createdAt: DateTime.now(),
+  ),
+  Task(
+    id: '10',
+    title: 'Repair bike',
+    description: '-',
+    dueDate: DateTime.now(),
     createdAt: DateTime.now(),
   ),
   Task(
@@ -50,11 +71,11 @@ final List<Task> tasks = [
   ),
 ];
 
-final List<Task> overdueTasks = tasks
+final List<Task> overdueTasks = _tasks
     .where((task) => DateTimeHandler.isBeforeToday(task.dueDate!))
     .toList();
 
-final List<Task> todaysTasks = tasks
+final List<Task> todaysTasks = _tasks
     .where((task) => DateTimeHandler.isSameDate(task.dueDate!, DateTime.now()))
     .toList();
 
@@ -66,7 +87,7 @@ class TasksPage extends StatelessWidget {
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        CustomCalendarWidget(events: tasks.map((task) => task.dueDate).toList()),
+        CustomCalendarWidget(events: _tasks.map((task) => task.dueDate).toList()),
 
         Expanded(
           child: Material(

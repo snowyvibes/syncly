@@ -83,10 +83,12 @@ TextTheme _typography(ColorScheme scheme, bool dark) {
     ),
     bodyMedium: TextStyle(
       fontFamily: text,
-
       fontSize: _fontStartSize + 2,
     ),
-    // bodySmall: TextStyle(fontFamily: text, fontWeight: FontWeight.w200, fontSize: _fontStartSize),
+    bodySmall: TextStyle(
+      fontFamily: text,
+      fontSize: _fontStartSize,
+    ),
     labelLarge: TextStyle(
       fontFamily: text,
 
@@ -146,13 +148,16 @@ final lightTheme = ThemeData(
   typography: Typography.material2021(),
   textTheme: _typography(_lightScheme, false),
   appBarTheme: AppBarTheme(
-    backgroundColor: _lightScheme.surface.withOpacity(0.9),
+    backgroundColor: _lightScheme.primary,
     elevation: 0,
     scrolledUnderElevation: 4,
     surfaceTintColor: Colors.transparent,
-    foregroundColor: _lightScheme.onSurface,
+    foregroundColor: _lightScheme.surface,
     centerTitle: true,
-    titleTextStyle: _typography(_lightScheme, false).titleLarge,
+    titleTextStyle: _typography(
+      _lightScheme,
+      false,
+    ).titleLarge!.copyWith(color: _lightScheme.surface),
   ),
   navigationBarTheme: NavigationBarThemeData(
     backgroundColor: _lightScheme.surface,
@@ -183,7 +188,44 @@ final lightTheme = ThemeData(
     ),
   ),
   iconTheme: IconThemeData(color: _lightScheme.onSurfaceVariant),
+  outlinedButtonTheme: OutlinedButtonThemeData(
+    style: ButtonStyle(
+      shape: WidgetStateProperty.all(
+        RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppSizes.borderRadius)),
+      ),
+      side: WidgetStateProperty.resolveWith(
+        (s) => BorderSide(
+          color: s.contains(WidgetState.disabled)
+              ? _lightScheme.outlineVariant
+              : _lightScheme.primary,
+          width: 1.2,
+        ),
+      ),
+      padding: WidgetStateProperty.all(
+        const EdgeInsets.symmetric(horizontal: AppSizes.padding * 2, vertical: AppSizes.padding),
+      ),
+      foregroundColor: WidgetStateProperty.all(_lightScheme.primary),
+    ),
+  ),
   elevatedButtonTheme: ElevatedButtonThemeData(
+    style: ButtonStyle(
+      padding: WidgetStateProperty.all(
+        const EdgeInsets.symmetric(horizontal: AppSizes.padding * 2, vertical: AppSizes.padding),
+      ),
+      shape: WidgetStateProperty.all(
+        RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppSizes.borderRadius)),
+      ),
+      elevation: WidgetStateProperty.all(AppSizes.elevation),
+      backgroundColor: WidgetStateProperty.resolveWith(
+        (s) => s.contains(WidgetState.disabled)
+            ? _lightScheme.primary.withOpacity(.25)
+            : _lightScheme.primary,
+      ),
+      foregroundColor: WidgetStateProperty.all(Colors.white),
+      overlayColor: WidgetStateProperty.all(Colors.white.withOpacity(.08)),
+    ),
+  ),
+  filledButtonTheme: FilledButtonThemeData(
     style: ButtonStyle(
       padding: WidgetStateProperty.all(
         const EdgeInsets.symmetric(horizontal: AppSizes.padding * 2, vertical: AppSizes.padding),
@@ -213,25 +255,7 @@ final lightTheme = ThemeData(
       ),
     ),
   ),
-  outlinedButtonTheme: OutlinedButtonThemeData(
-    style: ButtonStyle(
-      shape: WidgetStateProperty.all(
-        RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppSizes.borderRadius)),
-      ),
-      side: WidgetStateProperty.resolveWith(
-        (s) => BorderSide(
-          color: s.contains(WidgetState.disabled)
-              ? _lightScheme.outlineVariant
-              : _lightScheme.primary,
-          width: 1.2,
-        ),
-      ),
-      padding: WidgetStateProperty.all(
-        const EdgeInsets.symmetric(horizontal: AppSizes.padding * 2, vertical: AppSizes.padding),
-      ),
-      foregroundColor: WidgetStateProperty.all(_lightScheme.primary),
-    ),
-  ),
+
   dividerTheme: DividerThemeData(
     color: _lightScheme.outlineVariant.withOpacity(.4),
     thickness: 1,
@@ -252,9 +276,10 @@ final lightTheme = ThemeData(
     border: _inputBorder(Colors.transparent),
   ),
   chipTheme: ChipThemeData(
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppSizes.borderRadius)),
-    backgroundColor: _lightScheme.surfaceVariant.withOpacity(.5),
-    selectedColor: _lightScheme.primary.withOpacity(.18),
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppSizes.borderRadius / 2)),
+    checkmarkColor: _lightScheme.primary,
+    backgroundColor: _lightScheme.surfaceContainer,
+    selectedColor: _lightScheme.primary,
     labelStyle: TextStyle(color: _lightScheme.onSurface),
     padding: const EdgeInsets.symmetric(
       horizontal: AppSizes.padding,
@@ -285,11 +310,11 @@ final darkTheme = ThemeData(
   typography: Typography.material2021(),
   textTheme: _typography(_darkScheme, true),
   appBarTheme: AppBarTheme(
-    backgroundColor: _darkScheme.surface.withOpacity(0.92),
+    backgroundColor: _darkScheme.primary,
     elevation: 0,
     scrolledUnderElevation: 4,
     surfaceTintColor: Colors.transparent,
-    foregroundColor: _darkScheme.onSurface,
+    foregroundColor: _darkScheme.surface,
     centerTitle: true,
     titleTextStyle: _typography(_darkScheme, true).titleLarge,
   ),

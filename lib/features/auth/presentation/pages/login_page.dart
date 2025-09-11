@@ -38,9 +38,11 @@ class LoginPage extends StatelessWidget {
               ),
               const CustomTextField(
                 hintText: 'Email',
+                hintStyle: TextStyle(color: Colors.white),
               ),
               const CustomTextField(
                 hintText: 'Password',
+                hintStyle: TextStyle(color: Colors.white),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -62,9 +64,13 @@ class LoginPage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text('Don\'t have an account?'),
+                  Text(
+                    'Don\'t have an account?',
+                    style: TextStyle(color: Theme.of(context).colorScheme.surface),
+                  ),
                   CustomTextButton(
                     text: 'Register',
+                    textColor: Theme.of(context).colorScheme.surface,
                     onPressed: () {
                       context.go('/register');
                     },
