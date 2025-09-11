@@ -1,6 +1,6 @@
 # Syncly
 
-Syncly is a free, open-source notes and reminders app built with **Flutter**. It works offline-first, syncs across devices, and emphasizes user privacy — no ads, no trackers.
+Syncly is a free, open-source notes and tasks app built with **Flutter**. It works offline-first, syncs across devices, and emphasizes user privacy — no ads, no trackers.
 
 ## Features
 
@@ -18,7 +18,7 @@ Syncly is a free, open-source notes and reminders app built with **Flutter**. It
 - **Local storage:** Drift (SQLite ORM)  
 - **Sync backend:**  
   - Development: Supabase  
-  - Production: self-hosted backend (Oracle VM)  
+  - Production: Planned to self-hosted backend (VPS)
 - **Routing:** GoRouter  
 - **Architecture:** Clean Architecture (feature-based + core/shared modules)
 
@@ -59,7 +59,7 @@ lib/
 
 ### Clone the Repository
 ```bash
-git clone https://github.com/<your-username>/syncly.git
+git clone https://github.com/snowyvibes/syncly.git
 cd syncly
 ```
 
@@ -73,31 +73,13 @@ flutter pub get
 flutter run
 ```
 
-## Testing
-
-We follow a test-as-you-build approach:
-
-- Unit tests — functions and use cases  
-- Widget tests — UI components  
-- Integration tests — end-to-end flows
-
-Run tests:
-```bash
-flutter test
-```
-
-Integration tests:
-```bash
-flutter drive --driver=test_driver/integration_test.dart --target=integration_test/app_flow_test.dart
-```
-
 ## Contributing
 
 Contributions are welcome. Please open an issue before submitting a PR so we can discuss changes and align on scope and design.
 
 ## License
 
-This project is licensed under the MIT License. See `LICENSE` for details.
+This project is licensed under the MIT License.
 
 ## Privacy
 
