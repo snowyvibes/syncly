@@ -22,6 +22,12 @@ Syncly is a free, open-source notes and tasks app built with **Flutter**. It wor
 - **Routing:** GoRouter  
 - **Architecture:** Clean Architecture (feature-based + core/shared modules)
 
+## Screenshots
+
+![Screenshot](./screenshots/login.png)
+![Screenshot](./screenshots/tasks.png)
+
+
 ## Project Structure
 
 ```
