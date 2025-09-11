@@ -25,7 +25,7 @@ Syncly is a free, open-source notes and tasks app built with **Flutter**. It wor
 ## Screenshots
 
 <img src="screenshots/login.png" width="400"/>
-<img src="screenshots/tasks.png.png" width="400"/>
+<img src="screenshots/tasks.png" width="400"/>
 
 
 ## Project Structure
