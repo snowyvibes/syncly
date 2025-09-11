@@ -97,7 +97,11 @@ Contributions are welcome. Please open an issue before submitting a PR so we can
 
 ## License
 
-This project is licensed under the MIT License. See `LICENSE` for details.
+This code is provided for educational and transparency purposes only.
+
+You may read and contribute to this repository, but you may not reuse, modify, or redistribute any part of the code for your own projects or commercial purposes.
+
+See the [LICENSE](./LICENSE) file for full details.
 
 ## Privacy
 
