@@ -12,6 +12,10 @@ class AppSizes {
 
   static const double borderRadius = size16;
 
+  static const double elevation = size4;
+
+  static const double iconSize = size24;
+
   static const double rowSpacing = size8;
   static const double columnSpacing = size8;
 }

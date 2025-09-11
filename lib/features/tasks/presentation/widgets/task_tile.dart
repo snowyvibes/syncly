@@ -108,7 +108,9 @@ class _TaskTileState extends State<TaskTile> {
                           Theme.of(
                             context,
                           ).textTheme.bodyMedium!.copyWith(
-                            color: Theme.of(context).colorScheme.primary,
+                            color: DateTimeHandler.isBeforeToday(widget.task.dueDate!)
+                                ? Colors.red
+                                : Theme.of(context).colorScheme.primary,
                           ),
                     ),
                 ],

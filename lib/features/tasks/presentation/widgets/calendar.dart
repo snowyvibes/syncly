@@ -34,20 +34,28 @@ class _CustomCalendarWidgetState extends State<CustomCalendarWidget> {
       lastDay: DateTime.utc(2030, 3, 14),
       formatAnimationCurve: Curves.easeInOutCubic,
       formatAnimationDuration: const Duration(milliseconds: 300),
+      rowHeight: 42,
+      currentDay: DateTime.now(),
+      calendarFormat: _calendarFormat,
+
+      availableCalendarFormats: const {CalendarFormat.month: 'Month', CalendarFormat.week: 'Week'},
+      daysOfWeekHeight: 25,
+      focusedDay: _focusedDay,
+
+      daysOfWeekStyle: DaysOfWeekStyle(
+        weekdayStyle: TextStyle(color: Theme.of(context).colorScheme.surface),
+        weekendStyle: TextStyle(color: Theme.of(context).colorScheme.surface),
+      ),
       calendarBuilders: CalendarBuilders(
         markerBuilder: (context, date, events) {
           if (events.isNotEmpty) {
             final eventCount = events.length;
-
             String eventCountInDots = '';
-
             for (var i = 0; i < eventCount && i < 3; i++) {
               eventCountInDots += '•';
             }
-
             return Positioned(
               top: 23,
-              // right: 1,
               child: Text(
                 eventCountInDots,
                 style: Theme.of(
@@ -59,43 +67,39 @@ class _CustomCalendarWidgetState extends State<CustomCalendarWidget> {
           return const SizedBox.shrink();
         },
       ),
-      focusedDay: _focusedDay,
-      daysOfWeekHeight: 25,
-      daysOfWeekStyle: DaysOfWeekStyle(
-        weekdayStyle: TextStyle(color: Theme.of(context).colorScheme.onSurface),
-        weekendStyle: TextStyle(color: Theme.of(context).colorScheme.onSurface),
-      ),
-      rowHeight: 42,
-      currentDay: DateTime.now(),
 
       headerStyle: HeaderStyle(
+        formatButtonTextStyle: TextStyle(color: Theme.of(context).colorScheme.surface),
+        formatButtonDecoration: BoxDecoration(
+          border: Border.all(color: Theme.of(context).colorScheme.surface),
+          borderRadius: BorderRadius.circular(AppSizes.borderRadius),
+        ),
         leftChevronVisible: false,
         rightChevronVisible: false,
         titleTextStyle: Theme.of(
           context,
         ).textTheme.displayLarge!.copyWith(color: Theme.of(context).colorScheme.surface),
       ),
-
       onDaySelected: (DateTime selectedDay, DateTime focusedDay) {
         setState(() {
           _selectedDay = selectedDay;
           _focusedDay = focusedDay;
         });
       },
-      calendarFormat: _calendarFormat,
+
       onFormatChanged: (CalendarFormat format) {
         setState(() {
           _calendarFormat = format;
         });
       },
-      availableCalendarFormats: const {CalendarFormat.month: 'Month', CalendarFormat.week: 'Week'},
+
       calendarStyle: CalendarStyle(
+        weekendTextStyle: TextStyle(color: Theme.of(context).colorScheme.surface),
         todayDecoration: BoxDecoration(
           color: Theme.of(context).colorScheme.primary,
           shape: BoxShape.circle,
         ),
         markersMaxCount: 3,
-        markerSize: 100,
         markerDecoration: BoxDecoration(
           color: Theme.of(context).colorScheme.tertiary,
           shape: BoxShape.circle,

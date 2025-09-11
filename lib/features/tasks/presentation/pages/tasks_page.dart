@@ -1,103 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:syncly/core/utils/date_time_handler.dart';
 import 'package:syncly/core/utils/sizes.dart';
+import 'package:syncly/core/widgets/expansible.dart';
 import 'package:syncly/features/tasks/domain/entities/task.dart';
 import 'package:syncly/features/tasks/presentation/widgets/calendar.dart';
 import 'package:syncly/features/tasks/presentation/widgets/task_tile.dart';
-
-class TasksPage extends StatelessWidget {
-  const TasksPage({super.key});
-
-  @override
-  Widget build(BuildContext context) => SafeArea(
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        CustomCalendarWidget(events: tasks.map((task) => task.dueDate).toList()),
-
-        Expanded(
-          child: Material(
-            color: Theme.of(context).colorScheme.surface,
-            borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(AppSizes.borderRadius),
-              topRight: Radius.circular(AppSizes.borderRadius),
-            ),
-            clipBehavior: Clip.antiAlias,
-            child: Container(
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.surface,
-              ),
-              child: CustomScrollView(
-                shrinkWrap: true,
-                slivers: [
-                  SliverList(
-                    delegate: SliverChildListDelegate(
-                      [
-                        ExpansionTile(
-                          title: Text(
-                            'Today\'s Tasks',
-                            style: Theme.of(context).textTheme.headlineSmall,
-                          ),
-
-                          initiallyExpanded: true,
-                          maintainState: true,
-                          collapsedBackgroundColor: Theme.of(context).colorScheme.tertiary,
-
-                          children: List.generate(
-                            tasks.length,
-
-                            (index) => TaskTile(task: tasks[index]),
-                          ),
-                        ),
-                        ExpansionTile(
-                          title: Text(
-                            'Overdue Tasks',
-                            style: Theme.of(context).textTheme.headlineMedium,
-                          ),
-
-                          initiallyExpanded: true,
-                          maintainState: true,
-                          collapsedBackgroundColor: Theme.of(context).colorScheme.tertiary,
-
-                          children: List.generate(
-                            tasks.length,
-                            (index) => TaskTile(task: tasks[index]),
-                          ),
-                        ),
-                        ExpansionTile(
-                          title: Text(
-                            'Upcoming Tasks',
-                            style: Theme.of(context).textTheme.headlineMedium,
-                          ),
-
-                          initiallyExpanded: true,
-                          maintainState: true,
-                          collapsedBackgroundColor: Theme.of(context).colorScheme.tertiary,
-
-                          children: List.generate(
-                            tasks.length,
-                            (index) => TaskTile(task: tasks[index]),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ],
-    ),
-  );
-}
 
 final List<Task> tasks = [
   Task(
     id: '1',
     title: 'Get groceries',
     description: 'Buy milk, eggs, and bread',
-    dueDate: DateTime.now(),
+    dueDate: DateTime.now().subtract(const Duration(days: 1)),
     createdAt: DateTime.now(),
   ),
   Task(
@@ -117,7 +31,7 @@ final List<Task> tasks = [
     id: '4',
     title: 'Clean the house',
     description: 'Tidy up the living room and bedrooms',
-    dueDate: DateTime.now().add(const Duration(days: 3)),
+    dueDate: DateTime.now(),
     createdAt: DateTime.now(),
   ),
   Task(
@@ -135,3 +49,102 @@ final List<Task> tasks = [
     createdAt: DateTime.now(),
   ),
 ];
+
+final List<Task> overdueTasks = tasks
+    .where((task) => DateTimeHandler.isBeforeToday(task.dueDate!))
+    .toList();
+
+final List<Task> todaysTasks = tasks
+    .where((task) => DateTimeHandler.isSameDate(task.dueDate!, DateTime.now()))
+    .toList();
+
+class TasksPage extends StatelessWidget {
+  const TasksPage({super.key});
+
+  @override
+  Widget build(BuildContext context) => SafeArea(
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        CustomCalendarWidget(events: tasks.map((task) => task.dueDate).toList()),
+
+        Expanded(
+          child: Material(
+            color: Theme.of(context).colorScheme.surface,
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(AppSizes.borderRadius),
+              topRight: Radius.circular(AppSizes.borderRadius),
+            ),
+            clipBehavior: Clip.antiAlias,
+            child: SizedBox(
+              width: double.infinity,
+              child: CustomScrollView(
+                shrinkWrap: true,
+                slivers: [
+                  SliverList(
+                    delegate: SliverChildListDelegate(
+                      [
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(AppSizes.borderRadius),
+                              topRight: Radius.circular(AppSizes.borderRadius),
+                            ),
+                            color: Theme.of(context).colorScheme.secondary,
+                            // color: Colors.transparent,
+                          ),
+                          child: CustomExpansibleWidget(
+                            header: Text(
+                              'Overdue Tasks',
+                              style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                                color: Theme.of(context).colorScheme.surface,
+                              ),
+                            ),
+                            iconColor: Theme.of(context).colorScheme.surface,
+                            items: overdueTasks.map((index) => TaskTile(task: index)).toList(),
+                          ),
+                        ),
+
+                        Container(
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).colorScheme.secondary,
+                          ),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(AppSizes.borderRadius),
+                                topRight: Radius.circular(AppSizes.borderRadius),
+                              ),
+                              color: Theme.of(context).colorScheme.surface,
+                            ),
+                            child: CustomExpansibleWidget(
+                              initiallyExpanded: true,
+                              header: Text(
+                                'Today\'s Tasks',
+                                style: Theme.of(context).textTheme.titleLarge,
+                              ),
+                              items: todaysTasks.map((index) => TaskTile(task: index)).toList(),
+                            ),
+                          ),
+                        ),
+                        // Container(
+                        //   decoration: BoxDecoration(
+                        //     borderRadius: const BorderRadius.only(
+                        //       topLeft: Radius.circular(AppSizes.borderRadius),
+                        //       topRight: Radius.circular(AppSizes.borderRadius),
+                        //     ),
+                        //     color: Theme.of(context).colorScheme.surface,
+                        //   ),
+                        // ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ],
+    ),
+  );
+}

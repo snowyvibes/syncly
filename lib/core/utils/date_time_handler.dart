@@ -30,4 +30,27 @@ class DateTimeHandler {
   static String getCurrentTime() => formatTime(DateTime.now());
 
   static String getCurrentDateTime() => formatDateTime(DateTime.now());
+
+  static bool isSameDate(DateTime date1, DateTime date2) =>
+      date1.year == date2.year && date1.month == date2.month && date1.day == date2.day;
+
+  static bool isSameDateTime(DateTime date1, DateTime date2) => date1.isAtSameMomentAs(date2);
+
+  static bool isBeforeToday(DateTime date) {
+    final now = DateTime.now();
+    final today = DateTime(now.year, now.month, now.day);
+    final dateOnly = DateTime(date.year, date.month, date.day);
+    return dateOnly.isBefore(today);
+  }
+
+  static bool isAfterToday(DateTime date) {
+    final now = DateTime.now();
+    final today = DateTime(now.year, now.month, now.day);
+    final dateOnly = DateTime(date.year, date.month, date.day);
+    return dateOnly.isAfter(today);
+  }
+
+  static bool isBeforeDate(DateTime date, DateTime comparison) => date.isBefore(comparison);
+
+  static bool isAfterDate(DateTime date, DateTime comparison) => date.isAfter(comparison);
 }

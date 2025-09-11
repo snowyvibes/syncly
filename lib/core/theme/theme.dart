@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:syncly/core/utils/sizes.dart';
 
-const _primaryColor = Color(0xFF0B4F6C);
-const _secondaryColor = Color(0xFF59A5D8);
+const _primaryColor = Color(0xFF023436);
+const _secondaryColor = Color(0xFF8AB0AB);
 const _tertiaryColor = Color(0xFFFAF4D3);
 
-const _elevationOverlayColor = Colors.transparent;
+// const _primaryColor = Color(0xFF0B4F6C);
+// const _secondaryColor = Color(0xFF59A5D8);
+// const _tertiaryColor = Color(0xFFFAF4D3);
+
+// const _elevationOverlayColor = Colors.transparent;
 
 const _brandGradient = LinearGradient(
   colors: [Color(0xFF4B5FFF), Color(0xFF7F53FF)],
@@ -13,92 +17,91 @@ const _brandGradient = LinearGradient(
   end: Alignment.bottomRight,
 );
 
-const _fontStartSize = 14.0;
-
 TextTheme _typography(ColorScheme scheme, bool dark) {
+  const _fontStartSize = 18.0;
+  const _displayFontStartSize = _fontStartSize + 6.0;
+
   const display = 'Zain';
   const text = 'Zain';
   return const TextTheme(
     displayLarge: TextStyle(
       fontFamily: display,
-      fontWeight: FontWeight.w100,
+
       letterSpacing: -1.5,
-      fontSize: _fontStartSize + 24,
+      fontSize: _displayFontStartSize + 24,
     ),
     displayMedium: TextStyle(
       fontFamily: display,
-      fontWeight: FontWeight.w100,
       letterSpacing: -1.2,
-      fontSize: _fontStartSize + 20,
+      fontSize: _displayFontStartSize + 20,
     ),
     displaySmall: TextStyle(
       fontFamily: display,
-      fontWeight: FontWeight.w200,
       letterSpacing: -1.0,
-      fontSize: _fontStartSize + 18,
+      fontSize: _displayFontStartSize + 18,
     ),
     headlineLarge: TextStyle(
       fontFamily: display,
-      fontWeight: FontWeight.w200,
+
       letterSpacing: -1.0,
-      fontSize: _fontStartSize + 16,
+      fontSize: _displayFontStartSize + 16,
     ),
     headlineMedium: TextStyle(
       fontFamily: display,
-      fontWeight: FontWeight.w200,
+
       letterSpacing: -0.8,
-      fontSize: _fontStartSize + 14,
+      fontSize: _displayFontStartSize + 14,
     ),
     headlineSmall: TextStyle(
       fontFamily: display,
-      fontWeight: FontWeight.w300,
+
       letterSpacing: -0.6,
-      fontSize: _fontStartSize + 12,
+      fontSize: _displayFontStartSize + 12,
     ),
     titleLarge: TextStyle(
-      fontFamily: text,
-      fontWeight: FontWeight.w300,
+      fontFamily: display,
+
       letterSpacing: -0.4,
       fontSize: _fontStartSize + 10,
     ),
     titleMedium: TextStyle(
-      fontFamily: text,
-      fontWeight: FontWeight.w300,
+      fontFamily: display,
+
       fontSize: _fontStartSize + 8,
       letterSpacing: 0,
     ),
     titleSmall: TextStyle(
-      fontFamily: text,
-      fontWeight: FontWeight.w300,
+      fontFamily: display,
+
       fontSize: _fontStartSize + 6,
       letterSpacing: 0,
     ),
     bodyLarge: TextStyle(
       fontFamily: text,
-      fontWeight: FontWeight.w200,
+
       fontSize: _fontStartSize + 4,
     ),
     bodyMedium: TextStyle(
       fontFamily: text,
-      fontWeight: FontWeight.w200,
+
       fontSize: _fontStartSize + 2,
     ),
-    bodySmall: TextStyle(fontFamily: text, fontWeight: FontWeight.w200, fontSize: _fontStartSize),
+    // bodySmall: TextStyle(fontFamily: text, fontWeight: FontWeight.w200, fontSize: _fontStartSize),
     labelLarge: TextStyle(
       fontFamily: text,
-      fontWeight: FontWeight.w300,
+
       fontSize: _fontStartSize + 4,
       letterSpacing: 0.2,
     ),
     labelMedium: TextStyle(
       fontFamily: text,
-      fontWeight: FontWeight.w300,
+
       fontSize: _fontStartSize + 2,
       letterSpacing: 0.2,
     ),
     labelSmall: TextStyle(
       fontFamily: text,
-      fontWeight: FontWeight.w300,
+
       fontSize: _fontStartSize,
       letterSpacing: 0.4,
     ),

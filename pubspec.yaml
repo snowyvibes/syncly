@@ -96,12 +96,19 @@ flutter:
   fonts:
     - family: Zain
       fonts:
-        - asset: assets/fonts/Zain/Zain-Regular.ttf
-        - asset: assets/fonts/Zain/Zain-Italic.ttf
+        - asset: assets/fonts/zain/Zain-Regular.ttf
+        - asset: assets/fonts/zain/Zain-Italic.ttf
           style: italic
-        - asset: assets/fonts/Zain/Zain-Bold.ttf
+        - asset: assets/fonts/zain/Zain-Bold.ttf
           weight: 700
-        - asset: assets/fonts/Zain/Zain-Light.ttf
+        - asset: assets/fonts/zain/Zain-Light.ttf
+          weight: 300
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/poppins/Poppins-Regular.ttf
+        - asset: assets/fonts/poppins/Poppins-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/poppins/Poppins-Light.ttf
           weight: 300
   #   - family: Trajan Pro
   #     fonts:

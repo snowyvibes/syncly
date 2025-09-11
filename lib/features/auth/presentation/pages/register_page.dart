@@ -28,7 +28,7 @@ class RegisterPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'Create New Account',
+                'Let\'s Get Started!',
                 style: Theme.of(
                   context,
                 ).textTheme.displaySmall!.copyWith(color: Theme.of(context).colorScheme.surface),
@@ -47,6 +47,9 @@ class RegisterPage extends StatelessWidget {
               ),
               const CustomTextField(
                 hintText: 'Confirm Password',
+              ),
+              const SizedBox(
+                height: 20,
               ),
 
               CustomFilledButton(

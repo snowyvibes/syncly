@@ -18,21 +18,25 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _currentIndex = 0;
 
+  final List<Widget> pages = [
+    const TasksPage(),
+    const NotesPage(),
+    const SettingsPage(),
+  ];
+
   @override
   Widget build(BuildContext context) => Scaffold(
     body: Container(
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [Theme.of(context).colorScheme.primary, Theme.of(context).colorScheme.secondary],
-        ),
+        color: Theme.of(context).colorScheme.primary,
       ),
       child: IndexedStack(index: _currentIndex, children: pages),
     ),
     floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
     floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
     floatingActionButton: FloatingActionButton(
-      backgroundColor: Theme.of(context).colorScheme.tertiary,
-      foregroundColor: Theme.of(context).colorScheme.primary,
+      backgroundColor: Theme.of(context).colorScheme.secondary,
+      foregroundColor: Theme.of(context).colorScheme.surface,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
       onPressed: () {
         if (_currentIndex == 0) {
@@ -52,28 +56,32 @@ class _HomePageState extends State<HomePage> {
       child: const Icon(Icons.add),
     ),
     bottomNavigationBar: SizedBox(
-      height: 90,
+      // height: 110,
       child: StylishBottomBar(
         currentIndex: _currentIndex,
+        // Applied gradient instead of bg color because bg color makes the borders disappear
         gradient: LinearGradient(
           colors: [
             Theme.of(context).colorScheme.primary,
-            Theme.of(context).colorScheme.secondary,
+            Theme.of(context).colorScheme.primary,
           ],
         ),
         onTap: (int index) => setState(() => _currentIndex = index),
-        option: AnimatedBarOptions(),
+        option: AnimatedBarOptions(
+          barAnimation: BarAnimation.drop,
+          iconSize: AppSizes.iconSize,
+          iconStyle: IconStyle.animated,
+          opacity: 0.3,
+          padding: const EdgeInsets.only(top: 14, bottom: 14),
+        ),
+
         fabLocation: StylishBarFabLocation.end,
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(AppSizes.borderRadius),
           topRight: Radius.circular(AppSizes.borderRadius),
         ),
-        elevation: 10,
-
-        backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
         hasNotch: true,
         notchStyle: NotchStyle.circle,
-
         items: [
           BottomBarItem(
             icon: const Icon(FontAwesomeIcons.circleCheck),
@@ -101,9 +109,3 @@ class _HomePageState extends State<HomePage> {
     ),
   );
 }
-
-final List<Widget> pages = [
-  const TasksPage(),
-  const NotesPage(),
-  const SettingsPage(),
-];

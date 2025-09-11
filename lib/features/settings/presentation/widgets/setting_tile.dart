@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:syncly/core/utils/sizes.dart';
 
 class SettingTile extends StatelessWidget {
   const SettingTile({super.key, required this.text, this.subtitle, this.onTap, required this.icon});
@@ -10,12 +11,12 @@ class SettingTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Card(
-    elevation: 3,
+    elevation: AppSizes.elevation,
     child: ListTile(
       onTap: onTap,
       leading: Icon(
         icon,
-        size: 25,
+        size: AppSizes.iconSize,
         color: Theme.of(context).colorScheme.primary,
       ),
       title: Text(text),

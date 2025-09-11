@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
-import 'package:syncly/core/utils/constants.dart';
 import 'package:syncly/core/utils/sizes.dart';
 import 'package:syncly/features/settings/presentation/widgets/setting_tile.dart';
 
@@ -41,22 +40,22 @@ class SettingsPage extends StatelessWidget {
                     const ProfileBar(),
 
                     // APPEARANCE SECTION
-                    const SectionHeader(title: 'Appearance'),
-                    const SettingTile(
-                      text: 'Theme',
-                      subtitle: 'Light, Dark, System',
-                      icon: Icons.palette_outlined,
-                    ),
-                    const SettingTile(
-                      text: 'Language',
-                      subtitle: 'English',
-                      icon: Icons.language,
-                    ),
-                    const SettingTile(
-                      text: 'Default View',
-                      subtitle: 'Tasks, Notes, Calendar',
-                      icon: Icons.view_list,
-                    ),
+                    // const SectionHeader(title: 'Appearance'),
+                    // const SettingTile(
+                    //   text: 'Theme',
+                    //   subtitle: 'Light, Dark, System',
+                    //   icon: Icons.palette_outlined,
+                    // ),
+                    // const SettingTile(
+                    //   text: 'Language',
+                    //   subtitle: 'English',
+                    //   icon: Icons.language,
+                    // ),
+                    // const SettingTile(
+                    //   text: 'Default View',
+                    //   subtitle: 'Tasks, Notes, Calendar',
+                    //   icon: Icons.view_list,
+                    // ),
 
                     // DATA & SYNC SECTION
                     const SectionHeader(title: 'Data & Sync'),
@@ -64,11 +63,6 @@ class SettingsPage extends StatelessWidget {
                       text: 'Backup',
                       subtitle: 'Manage backup settings',
                       icon: FontAwesomeIcons.copy,
-                    ),
-                    const SettingTile(
-                      text: 'Sync Settings',
-                      subtitle: 'Auto-sync every 15 minutes',
-                      icon: Icons.sync,
                     ),
                     const SettingTile(
                       text: 'Storage',
@@ -170,17 +164,20 @@ class ProfileBar extends StatelessWidget {
   const ProfileBar({super.key});
 
   @override
-  Widget build(BuildContext context) => const Card(
-    elevation: 3,
+  Widget build(BuildContext context) => Card(
+    elevation: AppSizes.elevation,
     child: Padding(
-      padding: EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(AppSizes.padding),
       child: Row(
+        spacing: AppSizes.rowSpacing,
         children: [
-          CircleAvatar(
+          const CircleAvatar(
             radius: 30,
           ),
-          kSizedBoxHorizontal,
-          Text('John Doe'),
+          const SizedBox(
+            width: AppSizes.size16,
+          ),
+          Text('John Doe', style: Theme.of(context).textTheme.titleMedium),
         ],
       ),
     ),
