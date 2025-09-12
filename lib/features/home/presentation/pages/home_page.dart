@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> {
     floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
     floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
     floatingActionButton: FloatingActionButton(
-      backgroundColor: Theme.of(context).colorScheme.secondary,
+      backgroundColor: Theme.of(context).colorScheme.tertiary,
       foregroundColor: Theme.of(context).colorScheme.surface,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
       onPressed: () {
@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage> {
             isScrollControlled: true,
             showDragHandle: true,
             useSafeArea: true,
-            builder: (context) => const AddTaskPage(),
+            builder: (context) => AddTaskPage(),
           );
         } else if (_currentIndex == 1) {
           // Navigate to add note page
@@ -55,7 +55,7 @@ class _HomePageState extends State<HomePage> {
             isScrollControlled: true,
             showDragHandle: true,
             useSafeArea: true,
-            builder: (context) => const AddNotePage(),
+            builder: (context) =>  AddNotePage(),
           );
         }
       },

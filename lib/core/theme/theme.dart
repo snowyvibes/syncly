@@ -3,7 +3,7 @@ import 'package:syncly/core/utils/sizes.dart';
 
 const _primaryColor = Color(0xFF023436);
 const _secondaryColor = Color(0xFF8AB0AB);
-const _tertiaryColor = Color(0xFFFAF4D3);
+const _tertiaryColor = Color(0xFF5E7A70);
 
 // const _primaryColor = Color(0xFF0B4F6C);
 // const _secondaryColor = Color(0xFF59A5D8);

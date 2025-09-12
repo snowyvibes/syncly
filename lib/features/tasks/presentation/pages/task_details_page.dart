@@ -118,8 +118,8 @@ class _TaskDetailsPageState extends State<TaskDetailsPage> {
                         children: [
                           CustomListTile(
                             title: 'Category',
-                            subtitle: widget.task.tags != null
-                                ? widget.task.tags!.join(', ')
+                            subtitle: widget.task.categories != null
+                                ? widget.task.categories!.join(', ')
                                 : 'No Category Selected',
                             subtitleColor: Theme.of(context).colorScheme.primary,
                             leading: const Icon(FontAwesomeIcons.tag),

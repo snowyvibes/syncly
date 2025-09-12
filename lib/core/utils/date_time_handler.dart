@@ -34,6 +34,8 @@ class DateTimeHandler {
   static bool isSameDate(DateTime date1, DateTime date2) =>
       date1.year == date2.year && date1.month == date2.month && date1.day == date2.day;
 
+  static bool isToday(DateTime date) => isSameDate(date, DateTime.now());
+
   static bool isSameDateTime(DateTime date1, DateTime date2) => date1.isAtSameMomentAs(date2);
 
   static bool isBeforeToday(DateTime date) {

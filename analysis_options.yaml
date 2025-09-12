@@ -28,7 +28,6 @@ linter:
     avoid_redundant_argument_values: true  # Remove unnecessary argument values
     prefer_single_quotes: true  # Use single quotes for strings
     unnecessary_this: true  # Remove unnecessary 'this' references
-    prefer_expression_function_bodies: true  # Use => for single expression functions
     require_trailing_commas: true  # Add trailing commas for better formatting
 
     # Async and void rules
