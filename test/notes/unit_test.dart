@@ -110,7 +110,7 @@ void main() {
         ),
       ];
 
-      final folder = NoteFolder(
+      final folder = AppNoteFolder(
         id: 'work-folder',
         name: 'Work',
         numberOfNotes: 2,

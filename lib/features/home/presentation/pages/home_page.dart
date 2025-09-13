@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:stylish_bottom_bar/stylish_bottom_bar.dart';
 import 'package:syncly/core/utils/sizes.dart';
-import 'package:syncly/features/notes/presentation/pages/add_note_page.dart';
-import 'package:syncly/features/notes/presentation/pages/notes_page.dart';
+import 'package:syncly/features/notes/presentation/pages/add_note/add_note_page.dart';
+import 'package:syncly/features/notes/presentation/pages/main/notes_page.dart';
 import 'package:syncly/features/settings/presentation/pages/settings_page.dart';
 import 'package:syncly/features/tasks/presentation/pages/add_task/add_task_page.dart';
 import 'package:syncly/features/tasks/presentation/pages/task_calendar/tasks_page.dart';
@@ -55,7 +55,7 @@ class _HomePageState extends State<HomePage> {
             isScrollControlled: true,
             showDragHandle: true,
             useSafeArea: true,
-            builder: (context) =>  AddNotePage(),
+            builder: (context) => AddNotePage(),
           );
         }
       },
@@ -104,12 +104,12 @@ class _HomePageState extends State<HomePage> {
             selectedColor: Colors.white,
             unSelectedColor: Colors.grey[300]!,
           ),
-          BottomBarItem(
-            icon: const Icon(FontAwesomeIcons.gears),
-            title: const SizedBox.shrink(),
-            selectedColor: Colors.white,
-            unSelectedColor: Colors.grey[300]!,
-          ),
+          // BottomBarItem(
+          //   icon: const Icon(FontAwesomeIcons.gears),
+          //   title: const SizedBox.shrink(),
+          //   selectedColor: Colors.white,
+          //   unSelectedColor: Colors.grey[300]!,
+          // ),
         ],
       ),
     ),

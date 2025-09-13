@@ -35,7 +35,6 @@ class _NoteDetailsPageState extends ConsumerState<NoteDetailsPage> {
 
   @override
   Widget build(BuildContext context) {
-    final notes = ref.watch(notesListProvider);
     final notesNotifier = ref.read(notesListProvider.notifier);
 
     return Scaffold(

@@ -1,11 +1,8 @@
 import 'package:go_router/go_router.dart';
 import 'package:syncly/features/home/presentation/pages/home_page.dart';
 import 'package:syncly/features/notes/domain/entities/note.dart';
-import 'package:syncly/features/notes/presentation/pages/note_details_page.dart';
-import 'package:syncly/features/notes/presentation/pages/notes_page.dart';
-import 'package:syncly/features/settings/presentation/pages/privacy_policy.dart';
-import 'package:syncly/features/settings/presentation/pages/settings_page.dart';
-import 'package:syncly/features/settings/presentation/pages/support_page.dart';
+import 'package:syncly/features/notes/presentation/pages/main/notes_page.dart';
+import 'package:syncly/features/notes/presentation/pages/note_details/note_details_page.dart';
 import 'package:syncly/features/tasks/presentation/pages/task_calendar/tasks_page.dart';
 
 final GoRouter appRoutes = GoRouter(
@@ -33,8 +30,8 @@ final GoRouter appRoutes = GoRouter(
     ),
 
     // Settings
-    GoRoute(path: '/settings', builder: (context, state) => const SettingsPage()),
-    GoRoute(path: '/support', builder: (context, state) => const SupportPage()),
-    GoRoute(path: '/privacy', builder: (context, state) => const PrivacyPolicyPage()),
+    // GoRoute(path: '/settings', builder: (context, state) => const SettingsPage()),
+    // GoRoute(path: '/support', builder: (context, state) => const SupportPage()),
+    // GoRoute(path: '/privacy', builder: (context, state) => const PrivacyPolicyPage()),
   ],
 );

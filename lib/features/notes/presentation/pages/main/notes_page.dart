@@ -9,7 +9,6 @@ class NotesPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final notes = ref.watch(notesListProvider);
     final folders = ref.watch(notesFoldersProvider);
 
     return SafeArea(

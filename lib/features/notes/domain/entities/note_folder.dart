@@ -1,24 +1,24 @@
 import 'package:syncly/features/notes/domain/entities/note.dart';
 
-class NoteFolder {
+class AppNoteFolder {
   final String id;
   final String name;
   final int numberOfNotes;
   final List<Note> notes;
 
-  const NoteFolder({
+  const AppNoteFolder({
     required this.id,
     required this.name,
     required this.numberOfNotes,
     required this.notes,
   });
 
-  NoteFolder copyWith({
+  AppNoteFolder copyWith({
     String? name,
     int? numberOfNotes,
     List<Note>? notes,
   }) {
-    return NoteFolder(
+    return AppNoteFolder(
       id: id,
       name: name ?? this.name,
       notes: notes ?? this.notes,
