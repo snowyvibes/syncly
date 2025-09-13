@@ -4,8 +4,9 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:syncly/core/utils/date_time_handler.dart';
 import 'package:syncly/core/utils/sizes.dart';
 import 'package:syncly/core/widgets/card.dart';
+import 'package:syncly/core/widgets/text_button.dart';
 import 'package:syncly/features/tasks/domain/entities/task.dart';
-import 'package:syncly/features/tasks/presentation/pages/task_details_page.dart';
+import 'package:syncly/features/tasks/presentation/pages/task_details_and_edit/task_details_page.dart';
 import 'package:syncly/features/tasks/presentation/providers/tasks_provider.dart';
 
 class TaskTile extends ConsumerWidget {
@@ -47,8 +48,30 @@ class TaskTile extends ConsumerWidget {
               ),
               SlidableAction(
                 padding: const EdgeInsets.all(AppSizes.padding),
-                onPressed: (context) {},
-                icon: Icons.edit,
+                onPressed: (context) {
+                  showDialog(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                      title: const Text('Delete Task'),
+                      content: const Text('Are you sure you want to delete this task?'),
+                      actions: [
+                        CustomTextButton(
+                          onPressed: () => Navigator.pop(context),
+                          text: 'Cancel',
+                        ),
+                        CustomTextButton(
+                          onPressed: () {
+                            ref.read(tasksListProvider.notifier).deleteTask(task.id);
+                            Navigator.pop(context); // Close dialog
+                          },
+                          text: 'Delete',
+                          color: Colors.red.shade400,
+                        ),
+                      ],
+                    ),
+                  );
+                },
+                icon: Icons.delete,
                 label: 'Delete',
                 borderRadius: BorderRadius.circular((AppSizes.borderRadius)),
                 foregroundColor: Colors.white,
@@ -64,6 +87,7 @@ class TaskTile extends ConsumerWidget {
             child: Row(
               // crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                // TODO: Animate and play sound and vibration
                 AnimatedSwitcher(
                   duration: const Duration(milliseconds: 300),
                   child: IconButton(
@@ -93,29 +117,36 @@ class TaskTile extends ConsumerWidget {
                           ),
                         ],
                       ),
-                      Text(
-                        task.description ?? '-',
-                        style: Theme.of(
-                          context,
-                        ).textTheme.bodyMedium!.copyWith(color: Colors.grey.shade700),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
+                      Visibility(
+                        visible: task.description != null && task.description!.isNotEmpty,
+                        child: Text(
+                          task.description ?? '-',
+                          style: Theme.of(
+                            context,
+                          ).textTheme.bodyMedium!.copyWith(color: Colors.grey.shade700),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
                       ),
                       if (task.dueDate != null)
-                        Text(
-                          DateTimeHandler.formatDateInWord(task.dueDate!),
-                          style:
-                              Theme.of(
-                                context,
-                              ).textTheme.bodyMedium!.copyWith(
-                                color: DateTimeHandler.isBeforeToday(task.dueDate!)
-                                    ? Colors.red
-                                    : Theme.of(context).colorScheme.primary,
-                              ),
+                        Visibility(
+                          visible: task.dueDate != null,
+
+                          child: Text(
+                            DateTimeHandler.formatDateInWord(task.dueDate!),
+                            style:
+                                Theme.of(
+                                  context,
+                                ).textTheme.bodyMedium!.copyWith(
+                                  color: DateTimeHandler.isBeforeToday(task.dueDate!)
+                                      ? Colors.red
+                                      : Theme.of(context).colorScheme.primary,
+                                ),
+                          ),
                         ),
                     ],
                   ),
-                ), // TODO: Animate and play sound and vibration
+                ),
               ],
             ),
           ),

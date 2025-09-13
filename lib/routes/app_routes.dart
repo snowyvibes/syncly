@@ -1,6 +1,4 @@
 import 'package:go_router/go_router.dart';
-import 'package:syncly/features/auth/presentation/pages/login_page.dart';
-import 'package:syncly/features/auth/presentation/pages/register_page.dart';
 import 'package:syncly/features/home/presentation/pages/home_page.dart';
 import 'package:syncly/features/notes/domain/entities/note.dart';
 import 'package:syncly/features/notes/presentation/pages/note_details_page.dart';
@@ -8,15 +6,15 @@ import 'package:syncly/features/notes/presentation/pages/notes_page.dart';
 import 'package:syncly/features/settings/presentation/pages/privacy_policy.dart';
 import 'package:syncly/features/settings/presentation/pages/settings_page.dart';
 import 'package:syncly/features/settings/presentation/pages/support_page.dart';
-import 'package:syncly/features/tasks/presentation/pages/tasks_page.dart';
+import 'package:syncly/features/tasks/presentation/pages/task_calendar/tasks_page.dart';
 
 final GoRouter appRoutes = GoRouter(
   routes: [
-    GoRoute(path: '/', builder: (context, state) => const LoginPage()),
+    GoRoute(path: '/', builder: (context, state) => const HomePage()),
 
     // Auth
-    GoRoute(path: '/login', builder: (context, state) => const LoginPage()),
-    GoRoute(path: '/register', builder: (context, state) => const RegisterPage()),
+    // GoRoute(path: '/login', builder: (context, state) => const LoginPage()),
+    // GoRoute(path: '/register', builder: (context, state) => const RegisterPage()),
 
     // Home
     GoRoute(path: '/home', builder: (context, state) => const HomePage()),

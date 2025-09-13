@@ -1,16 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:syncly/features/tasks/domain/entities/task.dart';
+
+final addTaskSegmentIndexProvider = StateProvider<int>((ref) => 0);
 
 final addTaskCategoryProvider = StateProvider<String?>((ref) => null);
 
-class AddTaskProvider extends Notifier<Task> {
-  @override
-  Task build() {
-    return Task(
-      id: '',
-      title: '',
-      description: '',
-      createdAt: DateTime.now(),
-    );
-  }
-}
+final addTaskDateProvider = StateProvider<DateTime?>((ref) => null);
+
+final addTaskTimeProvider = StateProvider<DateTime?>((ref) => null);

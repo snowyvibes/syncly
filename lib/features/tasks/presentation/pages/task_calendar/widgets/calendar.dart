@@ -27,10 +27,6 @@ class CustomCalendarWidget extends ConsumerWidget {
     // }
     // return [];
 
-    print('Executed');
-    print(events);
-    print(events);
-
     return events
         .where((event) {
           return event != null && DateTimeHandler.isSameDate(event, day);
@@ -136,7 +132,6 @@ class CustomCalendarWidget extends ConsumerWidget {
           ),
           todayDecoration: BoxDecoration(
             color: Theme.of(context).colorScheme.secondary,
-
             shape: BoxShape.circle,
           ),
           markersMaxCount: 3,

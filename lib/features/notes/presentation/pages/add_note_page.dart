@@ -4,6 +4,7 @@ import 'package:syncly/core/utils/sizes.dart';
 import 'package:syncly/core/widgets/custom_outlined_button.dart';
 import 'package:syncly/core/widgets/filled_button.dart';
 import 'package:syncly/core/widgets/text_field.dart';
+import 'package:syncly/features/notes/presentation/providers/add_note_provider.dart';
 import 'package:syncly/features/notes/presentation/providers/notes_provider.dart';
 
 class AddNotePage extends ConsumerWidget {
@@ -17,6 +18,8 @@ class AddNotePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final notesProviderNotifier = ref.read(notesListProvider.notifier);
+    final addNoteFolder = ref.watch(addNoteFolderProvider);
+    final addNoteFolderNotifier = ref.read(addNoteFolderProvider.notifier);
 
     return Form(
       key: _formKey,
@@ -97,8 +100,9 @@ class AddNotePage extends ConsumerWidget {
                           notesProviderNotifier.addNote(
                             title: _titleController.text,
                             content: _contentController.text,
-                            folder: _selectedFolder ?? 'Others',
+                            folder: addNoteFolder ?? 'Others',
                           );
+                          Navigator.pop(context);
                         }
                       },
                       text: 'Add Note',
@@ -114,7 +118,7 @@ class AddNotePage extends ConsumerWidget {
   }
 }
 
-class NoteFolderPicker extends StatelessWidget {
+class NoteFolderPicker extends ConsumerWidget {
   final String? selectedFolder;
   final ValueChanged<String> onFolderSelected;
 
@@ -127,45 +131,50 @@ class NoteFolderPicker extends StatelessWidget {
   final List<String> folders = const ['Personal', 'Work', 'Ideas', 'Study', 'Travel', 'Others'];
 
   @override
-  Widget build(BuildContext context) => Container(
-    width: double.infinity,
-    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-    decoration: BoxDecoration(
-      border: Border.all(color: Theme.of(context).colorScheme.outline),
-      borderRadius: BorderRadius.circular(AppSizes.borderRadius),
-    ),
-    child: DropdownButton<String>(
-      value: selectedFolder,
-      isDense: true,
-      hint: const Text('Select a folder'),
-      isExpanded: true,
-      iconSize: AppSizes.iconSize,
-      style: Theme.of(context).textTheme.bodyMedium,
-      underline: const SizedBox(),
-      icon: const Icon(Icons.folder_outlined),
-      items: folders
-          .map(
-            (folder) => DropdownMenuItem<String>(
-              value: folder,
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.folder,
-                    size: AppSizes.iconSize,
-                    color: Theme.of(context).colorScheme.primary,
-                  ),
-                  const SizedBox(width: 12),
-                  Text(folder),
-                ],
+  Widget build(BuildContext context, WidgetRef ref) {
+    final addNoteFolderNotifier = ref.read(addNoteFolderProvider.notifier);
+
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      decoration: BoxDecoration(
+        border: Border.all(color: Theme.of(context).colorScheme.outline),
+        borderRadius: BorderRadius.circular(AppSizes.borderRadius),
+      ),
+      child: DropdownButton<String>(
+        value: selectedFolder,
+        isDense: true,
+        hint: const Text('Select a folder'),
+        isExpanded: true,
+        iconSize: AppSizes.iconSize,
+        style: Theme.of(context).textTheme.bodyMedium,
+        underline: const SizedBox(),
+        icon: const Icon(Icons.folder_outlined),
+        items: folders
+            .map(
+              (folder) => DropdownMenuItem<String>(
+                value: folder,
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.folder,
+                      size: AppSizes.iconSize,
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+                    const SizedBox(width: 12),
+                    Text(folder),
+                  ],
+                ),
               ),
-            ),
-          )
-          .toList(),
-      onChanged: (value) {
-        if (value != null) {
-          onFolderSelected(value);
-        }
-      },
-    ),
-  );
+            )
+            .toList(),
+        onChanged: (value) {
+          if (value != null) {
+            onFolderSelected(value);
+            addNoteFolderNotifier.state = value;
+          }
+        },
+      ),
+    );
+  }
 }

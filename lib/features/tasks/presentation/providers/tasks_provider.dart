@@ -38,16 +38,15 @@ final targetDateTasksProvider = Provider<List<Task>>((ref) {
   return tasks
       .where(
         (task) =>
-            task.dueDate != null &&
+            task.dueDate == null ||
             DateTimeHandler.isSameDate(task.dueDate!, ref.watch(selectedDateProvider)),
       )
       .toList();
 });
 
 final selectedDateProvider = StateProvider<DateTime>((ref) => DateTime.now());
-final focusedDateProvider = StateProvider<DateTime>((ref) => DateTime.now());
 
-final calendarExpandedProvider = StateProvider<bool>((ref) => true);
+final focusedDateProvider = StateProvider<DateTime>((ref) => DateTime.now());
 
 final calendarFormatProvider = StateProvider<CalendarFormat>((ref) => CalendarFormat.week);
 
@@ -154,15 +153,18 @@ class TaskListNotifier extends Notifier<List<Task>> {
     required String title,
     String? description,
     DateTime? dueDate,
-    List<String>? categories,
+
+    DateTime? dueTime,
+    String? category,
   }) {
     final newTask = Task(
       id: DateTime.now().millisecondsSinceEpoch.toString(),
       title: title,
       description: description ?? '',
       dueDate: dueDate,
+      dueTime: dueTime,
       createdAt: DateTime.now(),
-      categories: categories,
+      category: category,
     );
     state = [...state, newTask];
   }
@@ -191,6 +193,13 @@ class TaskListNotifier extends Notifier<List<Task>> {
     }
 
     state = updatedList;
+  }
+
+  void updateTask(Task updatedTask) {
+    state = [
+      for (final task in state)
+        if (task.id == updatedTask.id) updatedTask else task,
+    ];
   }
 
   void deleteTask(String id) {

@@ -35,6 +35,10 @@ class DateTimeHandler {
       date1.year == date2.year && date1.month == date2.month && date1.day == date2.day;
 
   static bool isToday(DateTime date) => isSameDate(date, DateTime.now());
+  static bool isTomorrow(DateTime date) =>
+      isSameDate(date, DateTime.now().add(const Duration(days: 1)));
+  static bool isYesterday(DateTime date) =>
+      isSameDate(date, DateTime.now().subtract(const Duration(days: 1)));
 
   static bool isSameDateTime(DateTime date1, DateTime date2) => date1.isAtSameMomentAs(date2);
 

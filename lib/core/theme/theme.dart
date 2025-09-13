@@ -207,6 +207,7 @@ final lightTheme = ThemeData(
       foregroundColor: WidgetStateProperty.all(_lightScheme.primary),
     ),
   ),
+
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ButtonStyle(
       padding: WidgetStateProperty.all(
@@ -250,8 +251,9 @@ final lightTheme = ThemeData(
       ),
       foregroundColor: WidgetStateProperty.all(_lightScheme.primary),
       overlayColor: WidgetStateProperty.all(_lightScheme.primary.withOpacity(.08)),
+
       padding: WidgetStateProperty.all(
-        const EdgeInsets.symmetric(horizontal: AppSizes.padding * 2, vertical: AppSizes.padding),
+        const EdgeInsets.symmetric(horizontal: AppSizes.padding, vertical: AppSizes.padding / 2),
       ),
     ),
   ),

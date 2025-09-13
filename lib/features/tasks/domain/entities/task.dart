@@ -3,8 +3,9 @@ class Task {
   final String title;
   final String? description;
   final DateTime? dueDate;
+  final DateTime? dueTime;
   final DateTime createdAt;
-  final List<String>? categories;
+  final String? category;
   final bool isCompleted;
 
   Task({
@@ -13,7 +14,8 @@ class Task {
     this.description,
     required this.createdAt,
     this.dueDate,
-    this.categories,
+    this.dueTime,
+    this.category,
     this.isCompleted = false,
   });
 
@@ -22,16 +24,18 @@ class Task {
     String? title,
     String? description,
     DateTime? dueDate,
+    DateTime? dueTime,
     DateTime? createdAt,
-    List<String>? tags,
+    String? category,
     bool? isCompleted,
   }) => Task(
     id: id ?? this.id,
     title: title ?? this.title,
     description: description ?? this.description,
     dueDate: dueDate ?? this.dueDate,
+    dueTime: dueTime ?? this.dueTime,
     createdAt: createdAt ?? this.createdAt,
-    categories: tags ?? this.categories,
+    category: category ?? this.category,
     isCompleted: isCompleted ?? this.isCompleted,
   );
 
@@ -40,8 +44,9 @@ class Task {
     title: json['title'] as String,
     description: json['description'] as String?,
     dueDate: json['dueDate'] != null ? DateTime.parse(json['dueDate']) : null,
+    dueTime: json['dueTime'] != null ? DateTime.parse(json['dueTime']) : null,
     createdAt: DateTime.parse(json['createdAt']),
-    categories: json['tags'] != null ? List<String>.from(json['tags']) : null,
+    category: json['tags'] as String?,
     isCompleted: json['isCompleted'] as bool? ?? false,
   );
 
@@ -50,8 +55,9 @@ class Task {
     'title': title,
     'description': description,
     'dueDate': dueDate?.toIso8601String(),
+    'dueTime': dueTime?.toIso8601String(),
     'createdAt': createdAt.toIso8601String(),
-    'tags': categories,
+    'category': category,
     'isCompleted': isCompleted,
   };
 }

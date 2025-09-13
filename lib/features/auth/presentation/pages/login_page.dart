@@ -49,7 +49,8 @@ class LoginPage extends StatelessWidget {
                 children: [
                   CustomTextButton(
                     text: 'Forgot Password?',
-                    textColor: Theme.of(context).colorScheme.surface,
+                    color: Theme.of(context).colorScheme.surface,
+                    onPressed: () {},
                   ),
                 ],
               ),
@@ -70,7 +71,7 @@ class LoginPage extends StatelessWidget {
                   ),
                   CustomTextButton(
                     text: 'Register',
-                    textColor: Theme.of(context).colorScheme.surface,
+                    color: Theme.of(context).colorScheme.surface,
                     onPressed: () {
                       context.go('/register');
                     },

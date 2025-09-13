@@ -58,7 +58,7 @@ class SettingsPage extends StatelessWidget {
                     const SizedBox(height: AppSizes.size8),
 
                     // DATA & SYNC SECTION
-                    const SectionHeader(title: 'Data & Sync'),
+                    const _SectionHeader(title: 'Data & Sync'),
                     SettingTile(
                       text: 'Backup',
                       subtitle: 'Manage backup settings',
@@ -119,7 +119,7 @@ class SettingsPage extends StatelessWidget {
                     ),
 
                     // NOTIFICATIONS SECTION
-                    const SectionHeader(title: 'Notifications'),
+                    const _SectionHeader(title: 'Notifications'),
                     SettingTile(
                       text: 'Notifications',
                       subtitle: 'Manage notification settings',
@@ -208,7 +208,7 @@ class SettingsPage extends StatelessWidget {
                     ),
 
                     // PRIVACY & SECURITY SECTION
-                    const SectionHeader(title: 'Privacy & Security'),
+                    const _SectionHeader(title: 'Privacy & Security'),
                     // const SettingTile(
                     //   text: 'Security',
                     //   subtitle: 'Biometric lock, PIN',
@@ -224,7 +224,7 @@ class SettingsPage extends StatelessWidget {
                     ),
 
                     // SUPPORT & INFO SECTION
-                    const SectionHeader(
+                    const _SectionHeader(
                       title: 'Support & Info',
                     ),
                     SettingTile(
@@ -259,7 +259,7 @@ class SettingsPage extends StatelessWidget {
                     ),
 
                     // ACCOUNT SECTION
-                    const SectionHeader(title: 'Account'),
+                    const _SectionHeader(title: 'Account'),
                     SettingTile(
                       text: 'Delete Account',
                       subtitle: 'Delete your account and all your data',
@@ -316,10 +316,10 @@ class SettingsPage extends StatelessWidget {
   );
 }
 
-class SectionHeader extends StatelessWidget {
+class _SectionHeader extends StatelessWidget {
   final String title;
 
-  const SectionHeader({super.key, required this.title});
+  const _SectionHeader({required this.title});
 
   @override
   Widget build(BuildContext context) => Container(

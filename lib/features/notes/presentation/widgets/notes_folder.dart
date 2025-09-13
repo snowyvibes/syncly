@@ -5,8 +5,8 @@ import 'package:syncly/core/widgets/expansible.dart';
 import 'package:syncly/features/notes/domain/entities/note.dart';
 import 'package:syncly/features/notes/presentation/widgets/note_tile.dart';
 
-class NotesFolder extends StatelessWidget {
-  const NotesFolder({
+class NotesFolderTile extends StatelessWidget {
+  const NotesFolderTile({
     super.key,
     required this.folderName,
     required this.notes,
@@ -36,7 +36,7 @@ class NotesFolder extends StatelessWidget {
               ),
               child: Icon(
                 folderIcon,
-                size: 20,
+                size: AppSizes.iconSize,
                 color: Theme.of(context).colorScheme.primary,
               ),
             ),
@@ -45,9 +45,7 @@ class NotesFolder extends StatelessWidget {
           Expanded(
             child: Text(
               folderName,
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                fontWeight: FontWeight.w600,
-              ),
+              style: Theme.of(context).textTheme.titleMedium,
             ),
           ),
           Container(

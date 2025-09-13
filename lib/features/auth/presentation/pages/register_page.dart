@@ -77,7 +77,7 @@ class RegisterPage extends StatelessWidget {
                     ),
                     CustomTextButton(
                       text: 'Login',
-                      textColor: surfaceColor,
+                      color: surfaceColor,
                       onPressed: () {
                         context.go('/login');
                       },

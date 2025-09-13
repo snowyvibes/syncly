@@ -21,27 +21,26 @@ class CustomSegmentedButton extends StatefulWidget {
 }
 
 class _CustomSegmentedButtonState extends State<CustomSegmentedButton> {
-  int _currentSegment = 0;
-
   @override
   Widget build(BuildContext context) => CupertinoSlidingSegmentedControl<int>(
-    groupValue: _currentSegment,
+    groupValue: widget.selected,
     thumbColor: Theme.of(context).colorScheme.primary, // Selected segment color
     backgroundColor: Theme.of(context).colorScheme.surfaceContainerHighest, // Unselected background
     padding: EdgeInsets.zero,
     proportionalWidth: true,
+
     children: widget.segments.asMap().map(
-      (index, text) => MapEntry(index, buildSegment(text, index == _currentSegment)),
+      (index, text) => MapEntry(index, buildSegment(text, index == widget.selected)),
     ),
     onValueChanged: widget.onValueChanged,
   );
 
   Widget buildSegment(String text, bool isSelected) => Padding(
-    padding: const EdgeInsets.all(AppSizes.padding),
+    padding: const EdgeInsets.all(AppSizes.padding / 1.5),
     child: Text(
       text,
       maxLines: 1,
-      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+      style: Theme.of(context).textTheme.bodySmall?.copyWith(
         color: isSelected
             ? Theme.of(context).colorScheme.onPrimary
             : Theme.of(context).colorScheme.onSurface,
