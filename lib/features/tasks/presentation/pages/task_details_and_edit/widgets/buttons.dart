@@ -92,28 +92,13 @@ class EditTaskButtons extends ConsumerWidget {
     DateTime? time,
     String? category,
   ) {
-    // Combine date and time if both are available
-    DateTime? finalDateTime;
-    if (date != null && time != null) {
-      finalDateTime = DateTime(
-        date.year,
-        date.month,
-        date.day,
-        time.hour,
-        time.minute,
-      );
-    } else if (date != null) {
-      finalDateTime = date;
-    } else if (time != null) {
-      finalDateTime = time;
-    }
-
     // Update the task in your provider
     ref
         .read(tasksListProvider.notifier)
         .updateTask(
           task.copyWith(
-            dueDate: finalDateTime,
+            dueDate: date,
+            dueTime: time,
             category: category,
           ),
         );

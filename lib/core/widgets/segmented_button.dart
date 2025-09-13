@@ -9,12 +9,14 @@ class CustomSegmentedButton extends StatefulWidget {
     required this.selected,
     required this.onValueChanged,
     this.label,
+    this.disabledChildren = const {},
   });
 
   final List<String> segments;
   final int selected;
   final String? label;
   final void Function(int?) onValueChanged;
+  final Set<int> disabledChildren;
 
   @override
   State<CustomSegmentedButton> createState() => _CustomSegmentedButtonState();
@@ -28,7 +30,7 @@ class _CustomSegmentedButtonState extends State<CustomSegmentedButton> {
     backgroundColor: Theme.of(context).colorScheme.surfaceContainerHighest, // Unselected background
     padding: EdgeInsets.zero,
     proportionalWidth: true,
-
+    disabledChildren: const {},
     children: widget.segments.asMap().map(
       (index, text) => MapEntry(index, buildSegment(text, index == widget.selected)),
     ),

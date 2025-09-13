@@ -4,7 +4,7 @@ import 'package:syncly/core/utils/sizes.dart';
 import 'package:syncly/features/tasks/domain/entities/task.dart';
 import 'package:syncly/features/tasks/presentation/pages/task_details_and_edit/widgets/buttons.dart';
 import 'package:syncly/features/tasks/presentation/pages/task_details_and_edit/widgets/category_picker.dart';
-import 'package:syncly/features/tasks/presentation/pages/task_details_and_edit/widgets/date.dart';
+import 'package:syncly/features/tasks/presentation/pages/task_details_and_edit/widgets/date_and_time.dart';
 import 'package:syncly/features/tasks/presentation/pages/task_details_and_edit/widgets/title_and_description.dart';
 import 'package:syncly/features/tasks/presentation/providers/task_details_provider.dart';
 
@@ -21,13 +21,13 @@ class _TaskDetailsPageState extends ConsumerState<TaskDetailsPage> {
 
   // Initialize providers with task data if they're null
   void preAssignProviders() {
-    if (ref.watch(editTaskDateProvider) == null && widget.task.dueDate != null) {
+    if (widget.task.dueDate != null) {
       ref.read(editTaskDateProvider.notifier).state = widget.task.dueDate;
     }
-    if (ref.watch(editTaskTimeProvider) == null && widget.task.dueDate != null) {
-      ref.read(editTaskTimeProvider.notifier).state = widget.task.dueDate;
+    if (widget.task.dueTime != null) {
+      ref.read(editTaskTimeProvider.notifier).state = widget.task.dueTime;
     }
-    if (ref.watch(editTaskCategoryProvider) == null && widget.task.category != null) {
+    if (widget.task.category != null) {
       ref.read(editTaskCategoryProvider.notifier).state = widget.task.category;
     }
   }
@@ -52,7 +52,7 @@ class _TaskDetailsPageState extends ConsumerState<TaskDetailsPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     TaskTitleAndDescription(task: widget.task),
-                    const EditTaskDate(),
+                    const EditTaskDateAndTime(),
                     const EditTaskCategoryPicker(),
                   ],
                 ),

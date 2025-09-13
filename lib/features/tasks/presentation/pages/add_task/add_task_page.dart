@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:syncly/core/utils/sizes.dart';
 import 'package:syncly/features/tasks/presentation/pages/add_task/widgets/index.dart';
 
-class AddTaskPage extends ConsumerWidget {
+class AddTaskPage extends StatelessWidget {
   AddTaskPage({super.key});
 
   final _titleController = TextEditingController();
@@ -11,7 +10,7 @@ class AddTaskPage extends ConsumerWidget {
   final _formKey = GlobalKey<FormState>();
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return Form(
       key: _formKey,
       child: SafeArea(
