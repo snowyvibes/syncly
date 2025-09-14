@@ -4,7 +4,7 @@ import 'package:syncly/core/utils/sizes.dart';
 import 'package:syncly/core/widgets/custom_outlined_button.dart';
 import 'package:syncly/core/widgets/filled_button.dart';
 import 'package:syncly/features/tasks/presentation/providers/add_task_provider.dart';
-import 'package:syncly/features/tasks/presentation/providers/tasks_provider.dart';
+import 'package:syncly/features/tasks/presentation/providers/tasks_list_provider.dart';
 
 class AddTaskButtons extends ConsumerWidget {
   const AddTaskButtons({

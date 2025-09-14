@@ -10,7 +10,7 @@ void main() {
       final note = Note(
         id: '1',
         title: 'Test Note',
-        description: 'Test Description',
+        content: 'Test Description',
         folder: 'Work',
         createdAt: DateTime.now(),
         lastUpdated: DateTime.now(),
@@ -18,7 +18,7 @@ void main() {
 
       expect(note.id, '1');
       expect(note.title, 'Test Note');
-      expect(note.description, 'Test Description');
+      expect(note.content, 'Test Description');
       expect(note.folder, 'Work');
       expect(note.createdAt, isA<DateTime>());
       expect(note.lastUpdated, isA<DateTime>());
@@ -28,7 +28,7 @@ void main() {
       final note = Note(
         id: '1',
         title: 'Original Title',
-        description: 'Original Description',
+        content: 'Original Description',
         folder: 'Work',
         createdAt: DateTime.now(),
         lastUpdated: DateTime.now(),
@@ -36,12 +36,12 @@ void main() {
 
       final updatedNote = note.copyWith(
         title: 'Updated Title',
-        description: 'Updated Description',
+        content: 'Updated Description',
         folder: 'Personal',
       );
 
       expect(updatedNote.title, 'Updated Title');
-      expect(updatedNote.description, 'Updated Description');
+      expect(updatedNote.content, 'Updated Description');
       expect(updatedNote.folder, 'Personal');
       expect(updatedNote.id, note.id);
       expect(updatedNote.createdAt, note.createdAt);
@@ -51,7 +51,7 @@ void main() {
       final note = Note(
         id: '1',
         title: 'Test Note',
-        description: 'Test Description',
+        content: 'Test Description',
         folder: 'Work',
         createdAt: DateTime(2023),
         lastUpdated: DateTime(2023),
@@ -82,7 +82,7 @@ void main() {
 
       expect(note.id, '1');
       expect(note.title, 'Test Note');
-      expect(note.description, 'Test Description');
+      expect(note.content, 'Test Description');
       expect(note.folder, 'Work');
       expect(note.createdAt, DateTime(2023));
       expect(note.lastUpdated, DateTime(2023));
@@ -95,7 +95,7 @@ void main() {
         Note(
           id: '1',
           title: 'Note 1',
-          description: 'Description 1',
+          content: 'Description 1',
           folder: 'Work',
           createdAt: DateTime.now(),
           lastUpdated: DateTime.now(),
@@ -103,7 +103,7 @@ void main() {
         Note(
           id: '2',
           title: 'Note 2',
-          description: 'Description 2',
+          content: 'Description 2',
           folder: 'Work',
           createdAt: DateTime.now(),
           lastUpdated: DateTime.now(),
@@ -164,7 +164,7 @@ void main() {
       final notes = container.read(notesListProvider);
       expect(notes.length, initialCount + 1);
       expect(notes.last.title, 'New Test Note');
-      expect(notes.last.description, 'Test Content');
+      expect(notes.last.content, 'Test Content');
       expect(notes.last.folder, 'Test');
     });
 
@@ -175,7 +175,7 @@ void main() {
 
       final updatedNote = firstNote.copyWith(
         title: 'Updated Note Title',
-        description: 'Updated Description',
+        content: 'Updated Description',
         folder: 'Updated Folder',
       );
 
@@ -185,7 +185,7 @@ void main() {
       final result = updatedNotes.firstWhere((note) => note.id == firstNote.id);
 
       expect(result.title, 'Updated Note Title');
-      expect(result.description, 'Updated Description');
+      expect(result.content, 'Updated Description');
       expect(result.folder, 'Updated Folder');
       expect(result.id, firstNote.id);
     });

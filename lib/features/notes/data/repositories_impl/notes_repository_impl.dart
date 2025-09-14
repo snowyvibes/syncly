@@ -1,10 +1,10 @@
 import 'package:syncly/features/notes/data/repositories_impl/drift_extensions.dart';
-import 'package:syncly/features/notes/data/sources/local/drift.dart' hide Note;
+import 'package:syncly/features/notes/data/sources/local/note_dao.dart';
 import 'package:syncly/features/notes/domain/entities/note.dart';
 import 'package:syncly/features/notes/domain/repositories/notes_repository.dart';
 
 class NotesRepositoryImpl implements NotesRepository {
-  final NotesDatabase _database;
+  final NotesDao _database;
 
   NotesRepositoryImpl(this._database);
 
@@ -33,7 +33,7 @@ class NotesRepositoryImpl implements NotesRepository {
 
   @override
   Future<void> updateNote(Note note) async {
-    await _database.updateNote(note.toNote());
+    await _database.updateNote(note.toCompanion());
   }
 
   @override

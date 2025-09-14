@@ -5,8 +5,8 @@ import 'package:syncly/core/utils/sizes.dart';
 import 'package:syncly/features/notes/presentation/pages/add_note/add_note_page.dart';
 import 'package:syncly/features/notes/presentation/pages/main/notes_page.dart';
 import 'package:syncly/features/settings/presentation/pages/settings_page.dart';
-import 'package:syncly/features/tasks/presentation/pages/add_task/add_task_page.dart';
-import 'package:syncly/features/tasks/presentation/pages/task_calendar/tasks_page.dart';
+import 'package:syncly/features/tasks/presentation/pages/add_task_page.dart';
+import 'package:syncly/features/tasks/presentation/pages/tasks_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

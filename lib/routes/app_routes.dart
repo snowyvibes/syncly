@@ -3,7 +3,7 @@ import 'package:syncly/features/home/presentation/pages/home_page.dart';
 import 'package:syncly/features/notes/domain/entities/note.dart';
 import 'package:syncly/features/notes/presentation/pages/main/notes_page.dart';
 import 'package:syncly/features/notes/presentation/pages/note_details/note_details_page.dart';
-import 'package:syncly/features/tasks/presentation/pages/task_calendar/tasks_page.dart';
+import 'package:syncly/features/tasks/presentation/pages/tasks_page.dart';
 
 final GoRouter appRoutes = GoRouter(
   routes: [

@@ -6,9 +6,9 @@ import 'package:syncly/core/utils/sizes.dart';
 import 'package:syncly/core/widgets/card.dart';
 import 'package:syncly/core/widgets/text_button.dart';
 import 'package:syncly/features/tasks/domain/entities/task.dart';
-import 'package:syncly/features/tasks/presentation/pages/task_details_and_edit/task_details_page.dart';
+import 'package:syncly/features/tasks/presentation/pages/task_details_page.dart';
 import 'package:syncly/features/tasks/presentation/providers/task_details_provider.dart';
-import 'package:syncly/features/tasks/presentation/providers/tasks_provider.dart';
+import 'package:syncly/features/tasks/presentation/providers/tasks_list_provider.dart';
 
 class TaskTile extends ConsumerWidget {
   const TaskTile({super.key, required this.task});

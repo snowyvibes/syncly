@@ -1,22 +1,22 @@
 class Task {
   final String id;
   final String title;
+  final DateTime createdAt;
+  final bool isCompleted;
   final String? description;
   final DateTime? dueDate;
   final DateTime? dueTime;
-  final DateTime createdAt;
   final String? category;
-  final bool isCompleted;
 
   Task({
     required this.id,
     required this.title,
-    this.description,
     required this.createdAt,
+    this.isCompleted = false,
+    this.description,
     this.dueDate,
     this.dueTime,
     this.category,
-    this.isCompleted = false,
   });
 
   Task copyWith({
@@ -46,7 +46,7 @@ class Task {
     dueDate: json['dueDate'] != null ? DateTime.parse(json['dueDate']) : null,
     dueTime: json['dueTime'] != null ? DateTime.parse(json['dueTime']) : null,
     createdAt: DateTime.parse(json['createdAt']),
-    category: json['tags'] as String?,
+    category: json['category'] as String?,
     isCompleted: json['isCompleted'] as bool? ?? false,
   );
 

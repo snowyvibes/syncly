@@ -5,7 +5,7 @@ import 'package:syncly/core/widgets/custom_outlined_button.dart';
 import 'package:syncly/core/widgets/filled_button.dart';
 import 'package:syncly/features/tasks/domain/entities/task.dart';
 import 'package:syncly/features/tasks/presentation/providers/task_details_provider.dart';
-import 'package:syncly/features/tasks/presentation/providers/tasks_provider.dart';
+import 'package:syncly/features/tasks/presentation/providers/tasks_list_provider.dart';
 
 class EditTaskButtons extends ConsumerWidget {
   const EditTaskButtons({super.key, required this.task});

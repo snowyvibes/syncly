@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:syncly/core/utils/sizes.dart';
-import 'package:syncly/features/tasks/presentation/pages/add_task/widgets/index.dart';
+import 'package:syncly/features/tasks/presentation/widgets/add_task/index.dart';
 
 class AddTaskPage extends StatelessWidget {
   AddTaskPage({super.key});

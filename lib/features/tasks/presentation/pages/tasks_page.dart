@@ -3,8 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:syncly/core/utils/date_time_handler.dart';
 import 'package:syncly/core/utils/sizes.dart';
 import 'package:syncly/core/widgets/expandable_tile.dart';
-import 'package:syncly/features/tasks/presentation/pages/task_calendar/widgets/index.dart';
 import 'package:syncly/features/tasks/presentation/providers/tasks_provider.dart';
+import 'package:syncly/features/tasks/presentation/providers/tasks_list_provider.dart';
+import 'package:syncly/features/tasks/presentation/widgets/task_calendar/index.dart';
 
 class TasksPage extends ConsumerWidget {
   const TasksPage({super.key});

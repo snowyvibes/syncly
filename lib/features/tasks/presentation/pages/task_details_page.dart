@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:syncly/core/utils/sizes.dart';
 import 'package:syncly/features/tasks/domain/entities/task.dart';
-import 'package:syncly/features/tasks/presentation/pages/task_details_and_edit/widgets/buttons.dart';
-import 'package:syncly/features/tasks/presentation/pages/task_details_and_edit/widgets/category_picker.dart';
-import 'package:syncly/features/tasks/presentation/pages/task_details_and_edit/widgets/date_and_time.dart';
-import 'package:syncly/features/tasks/presentation/pages/task_details_and_edit/widgets/title_and_description.dart';
+import 'package:syncly/features/tasks/presentation/widgets/task_details_and_edit/buttons.dart';
+import 'package:syncly/features/tasks/presentation/widgets/task_details_and_edit/category_picker.dart';
+import 'package:syncly/features/tasks/presentation/widgets/task_details_and_edit/date_and_time.dart';
+import 'package:syncly/features/tasks/presentation/widgets/task_details_and_edit/title_and_description.dart';
 import 'package:syncly/features/tasks/presentation/providers/task_details_provider.dart';
 
 class TaskDetailsPage extends ConsumerStatefulWidget {

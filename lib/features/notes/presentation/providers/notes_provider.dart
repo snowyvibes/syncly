@@ -1,12 +1,13 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:syncly/database/local/drift_database.dart';
 import 'package:syncly/features/notes/data/repositories_impl/notes_repository_impl.dart';
-import 'package:syncly/features/notes/data/sources/local/drift.dart' hide Note;
+import 'package:syncly/features/notes/data/sources/local/note_dao.dart';
 import 'package:syncly/features/notes/domain/entities/note.dart';
 import 'package:syncly/features/notes/domain/entities/note_folder.dart';
 import 'package:syncly/features/notes/domain/repositories/notes_repository.dart';
 
-final notesDatabaseProvider = Provider<NotesDatabase>((ref) {
-  return NotesDatabase();
+final notesDatabaseProvider = Provider<NotesDao>((ref) {
+  return NotesDao(AppDatabase());
 });
 
 final notesRepositoryProvider = Provider<NotesRepository>((ref) {
@@ -71,7 +72,7 @@ class NotesProvider extends Notifier<List<Note>> {
     final newNote = Note(
       id: DateTime.now().millisecondsSinceEpoch.toString(),
       title: title,
-      description: content,
+      content: content,
       folder: folder,
       createdAt: DateTime.now(),
       lastUpdated: DateTime.now(),

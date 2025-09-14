@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:syncly/features/tasks/domain/entities/task.dart';
 import 'package:syncly/features/tasks/presentation/providers/tasks_provider.dart';
+import 'package:syncly/features/tasks/presentation/providers/tasks_list_provider.dart';
 
 void main() {
   group('Task Model Tests', () {

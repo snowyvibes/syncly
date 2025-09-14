@@ -23,7 +23,7 @@ class _NoteDetailsPageState extends ConsumerState<NoteDetailsPage> {
   void initState() {
     super.initState();
     _titleController = TextEditingController(text: widget.note.title);
-    _descriptionController = TextEditingController(text: widget.note.description);
+    _descriptionController = TextEditingController(text: widget.note.content);
   }
 
   @override
@@ -49,7 +49,7 @@ class _NoteDetailsPageState extends ConsumerState<NoteDetailsPage> {
           onPressed: () {
             final updatedNote = widget.note.copyWith(
               title: _titleController.text,
-              description: _descriptionController.text,
+              content: _descriptionController.text,
               lastUpdated: DateTime.now(),
             );
             notesNotifier.updateNote(updatedNote);
@@ -66,7 +66,7 @@ class _NoteDetailsPageState extends ConsumerState<NoteDetailsPage> {
             onPressed: () {
               final updatedNote = widget.note.copyWith(
                 title: _titleController.text,
-                description: _descriptionController.text,
+                content: _descriptionController.text,
                 lastUpdated: DateTime.now(),
               );
               notesNotifier.updateNote(updatedNote);
