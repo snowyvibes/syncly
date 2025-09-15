@@ -7,7 +7,7 @@ import 'package:syncly/features/notes/domain/entities/note_folder.dart';
 import 'package:syncly/features/notes/domain/repositories/notes_repository.dart';
 
 final notesDatabaseProvider = Provider<NotesDao>((ref) {
-  return NotesDao(AppDatabase());
+  return NotesDao(ref.watch(appDatabaseProvider));
 });
 
 final notesRepositoryProvider = Provider<NotesRepository>((ref) {

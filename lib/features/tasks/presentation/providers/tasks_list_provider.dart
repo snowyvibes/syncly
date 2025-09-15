@@ -1,14 +1,14 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:syncly/core/utils/date_time_handler.dart';
-import 'package:syncly/features/tasks/data/repositories_impl/tasks_repo_impl.dart';
 import 'package:syncly/database/local/drift_database.dart';
+import 'package:syncly/features/tasks/data/repositories_impl/tasks_repo_impl.dart';
 import 'package:syncly/features/tasks/data/sources/local/task_dao.dart';
 import 'package:syncly/features/tasks/domain/entities/task.dart';
 import 'package:syncly/features/tasks/domain/repositories/tasks_repository.dart';
 
 // Database provider
 final tasksDatabaseProvider = Provider<TaskDao>((ref) {
-  return TaskDao(AppDatabase());
+  return TaskDao(ref.watch(appDatabaseProvider));
 });
 
 // Repository provider
