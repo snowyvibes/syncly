@@ -3,8 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:syncly/core/utils/date_time_handler.dart';
 import 'package:syncly/core/utils/sizes.dart';
 import 'package:syncly/core/widgets/expandable_tile.dart';
-import 'package:syncly/features/tasks/presentation/providers/tasks_provider.dart';
 import 'package:syncly/features/tasks/presentation/providers/tasks_list_provider.dart';
+import 'package:syncly/features/tasks/presentation/providers/tasks_provider.dart';
 import 'package:syncly/features/tasks/presentation/widgets/task_calendar/index.dart';
 
 class TasksPage extends ConsumerWidget {
@@ -52,7 +52,7 @@ class TasksPage extends ConsumerWidget {
                             items: upcomingTasks.map((index) => TaskTile(task: index)).toList(),
                           ),
                           ExpandableTile(
-                            initiallyExpanded: true,
+                            initiallyExpanded: todaysTasks.isNotEmpty,
                             title: DateTimeHandler.isSameDate(selectedDay, DateTime.now())
                                 ? 'Today\'s Tasks'
                                 : DateTimeHandler.formatDate(selectedDay),

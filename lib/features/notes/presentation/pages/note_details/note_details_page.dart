@@ -96,7 +96,6 @@ class _NoteDetailsPageState extends ConsumerState<NoteDetailsPage> {
                 ),
 
                 style: Theme.of(context).textTheme.titleSmall,
-                maxLength: 64,
                 textInputAction: TextInputAction.next,
                 maxLengthEnforcement: MaxLengthEnforcement.truncateAfterCompositionEnds,
               ),

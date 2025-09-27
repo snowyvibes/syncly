@@ -1,4 +1,4 @@
-import 'package:syncly/features/tasks/data/repositories_impl/drift_extension.dart';
+import 'package:syncly/features/tasks/data/models/drift_extension.dart';
 import 'package:syncly/features/tasks/data/sources/local/task_dao.dart';
 import 'package:syncly/features/tasks/domain/entities/task.dart';
 import 'package:syncly/features/tasks/domain/repositories/tasks_repository.dart';

@@ -61,8 +61,8 @@ class NoteTile extends ConsumerWidget {
                 showDialog(
                   context: context,
                   builder: (context) => AlertDialog(
-                    title: const Text('Delete Task'),
-                    content: const Text('Are you sure you want to delete this task?'),
+                    title: const Text('Delete Note'),
+                    content: const Text('Are you sure you want to delete this note?'),
                     actions: [
                       TextButton(
                         onPressed: () => Navigator.pop(context),

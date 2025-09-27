@@ -19,7 +19,7 @@ class TaskCategoryChips extends ConsumerWidget {
         const SectionTitle('Category'),
         Wrap(
           spacing: AppSizes.rowSpacing,
-          // runSpacing: AppSizes.rowSpacing / 2,
+          runSpacing: AppSizes.rowSpacing,
           children: List.generate(
             categories.length,
             (index) {
@@ -27,6 +27,12 @@ class TaskCategoryChips extends ConsumerWidget {
               final isSelected = taskCategory == category;
 
               return ChoiceChip(
+                visualDensity: VisualDensity.compact,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppSizes.padding / 1.2,
+                  vertical: AppSizes.padding,
+                ),
+
                 checkmarkColor: Theme.of(context).colorScheme.onPrimary,
                 onSelected: (selected) {
                   if (selected) taskCategoryNotifier.state = category;

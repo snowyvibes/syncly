@@ -1,8 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:syncly/features/tasks/domain/entities/task.dart';
-import 'package:syncly/features/tasks/presentation/providers/tasks_provider.dart';
 import 'package:syncly/features/tasks/presentation/providers/tasks_list_provider.dart';
+import 'package:syncly/features/tasks/presentation/providers/tasks_provider.dart';
 
 void main() {
   group('Task Model Tests', () {
@@ -12,13 +12,20 @@ void main() {
         title: 'Test Task',
         description: 'Test Description',
         createdAt: DateTime.now(),
+        category: 'Work',
+        dueDate: DateTime.now(),
+        dueTime: DateTime.now(),
+        isCompleted: false,
       );
 
       expect(task.id, '1');
       expect(task.title, 'Test Task');
       expect(task.description, 'Test Description');
-      expect(task.isCompleted, false);
       expect(task.createdAt, isA<DateTime>());
+      expect(task.category, 'Work');
+      expect(task.dueDate, isA<DateTime>());
+      expect(task.dueTime, isA<DateTime>());
+      expect(task.isCompleted, false);
     });
 
     test('should mark task as completed', () {
@@ -42,6 +49,9 @@ void main() {
         title: 'Test Task',
         description: 'Test Description',
         createdAt: DateTime(2023),
+        category: 'Work',
+        dueDate: DateTime(2023, 12, 31),
+        dueTime: DateTime(2023, 12, 31, 17),
       );
 
       final json = task.toJson();
@@ -50,6 +60,7 @@ void main() {
       expect(json['title'], 'Test Task');
       expect(json['description'], 'Test Description');
       expect(json['isCompleted'], false);
+      expect(json['dueDate'], isA<String>());
       expect(json['createdAt'], isA<String>());
     });
 

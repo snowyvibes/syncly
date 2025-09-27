@@ -1,5 +1,5 @@
 import 'package:drift/drift.dart';
-import 'package:syncly/features/tasks/data/sources/local/tables/task_table.dart';
+import 'package:syncly/features/tasks/data/models/task_table.dart';
 
 import '../../../../../database/local/drift_database.dart';
 

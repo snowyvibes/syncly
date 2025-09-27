@@ -27,7 +27,7 @@ class _CustomSegmentedButtonState extends State<CustomSegmentedButton> {
   Widget build(BuildContext context) => CupertinoSlidingSegmentedControl<int>(
     groupValue: widget.selected,
     thumbColor: Theme.of(context).colorScheme.primary, // Selected segment color
-    backgroundColor: Theme.of(context).colorScheme.surfaceContainerHighest, // Unselected background
+    backgroundColor: Theme.of(context).colorScheme.surfaceContainer, // Unselected background
     padding: EdgeInsets.zero,
     proportionalWidth: true,
     disabledChildren: const {},

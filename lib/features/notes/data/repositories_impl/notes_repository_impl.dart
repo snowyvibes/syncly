@@ -1,4 +1,4 @@
-import 'package:syncly/features/notes/data/repositories_impl/drift_extensions.dart';
+import 'package:syncly/features/notes/data/models/drift_extensions.dart';
 import 'package:syncly/features/notes/data/sources/local/note_dao.dart';
 import 'package:syncly/features/notes/domain/entities/note.dart';
 import 'package:syncly/features/notes/domain/repositories/notes_repository.dart';
